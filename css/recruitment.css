@@ -1,0 +1,29 @@
+/*recruitment.php*/
+.searchform form{
+  width: 90%;
+  margin: 0 auto;
+}
+.searchform ul{
+  display: block;
+  overflow: hidden;
+  list-style-type: none;
+}
+.searchform th{
+  font-size: 15px;
+  font-weight: lighter;
+  width: 100px;
+}
+.searchform td{
+  font-size: 12px;
+  text-align: center;
+}
+.submit{
+    align-items: flex-start;
+    text-align: center;
+    cursor: default;
+    color: buttontext;
+    background-color: buttonface;
+    box-sizing: border-box;
+    padding: 2px 6px 3px;
+    border-width: 2px;
+}

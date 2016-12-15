@@ -1,0 +1,196 @@
+/*home.php*/
+.topImage img{
+  width: 100%;
+  height: auto;
+}
+.tabs{
+  width: 496px;
+  height: 32px;
+  margin: 50px auto;
+}
+.tabs ul{
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  list-style-type: none;
+}
+.tabs li{
+  float: left;
+  text-align: center;
+  font-size: 20px;
+  width: 150px;
+  border: solid 1px #807f7f;
+  margin-left: 20px;
+}
+.tabs li:first-child{
+  margin: 0;
+}
+.tabs li a{
+  color: #807f7f;
+  text-decoration: none;
+  display: block;
+}
+.center{
+  text-align: center;
+  margin-bottom: 10px;
+}
+/*新着情報*/
+.center p.contentsTitle{
+  display: inline;
+  font-size: 30px;
+  color: #333;
+  padding-bottom: 10px;
+  border-bottom: solid 1px #333;
+  margin: 0;
+}
+#information{
+	width: 80%;
+  margin: 0 auto;
+  color: #212121;
+  margin-bottom: 20px;
+}
+#pinformation h1{
+	font-size: 28px;
+	border-bottom-style: 1px solid;
+	text-align: center;
+}
+#information p{
+	margin-left: 2px;
+}
+.news_1{
+	border-top: 1px solid;
+  margin-top: 15px;
+  text-align: left;
+	border-color: #e6e6fa;
+	padding: 8px;
+}
+.news_2{
+	border-top: 1px solid;
+	border-color: #e6e6fa;
+  text-align: left;
+	padding: 8px;
+}
+.news_3{
+	border-top: 1px solid;
+	border-bottom: 1px solid;
+	border-color: #e6e6fa;
+  text-align: left;
+	padding: 8px;
+}
+#calendar{
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+#calendar h3{
+  margin: 0;
+  margin-top: 30px;
+  padding: 0;
+  text-align: center;
+}
+#calendar table{
+  width: 100%;
+}
+#calendar table th{
+  background-color: #ccc;
+}
+#calendar table th,
+#calendar table td{
+  width: 14.285%;
+  border-top: solid 1px #ccc;
+  text-align: center;
+  padding: 0 10px;
+}
+tr.days td{
+  border: none;
+}
+.event{
+  height: 30px;
+  border-bottom: solid 1px #ccc;
+}
+/*recruitment.php*/
+/*.send ul{
+  list-style-type: none;
+}*/
+/*#rec li{
+  list-style: none;
+}*/
+.send th{
+  font-size: 15px;
+  font-weight: lighter;
+  width: 100px;
+}
+.send td{
+  font-size: 12px;
+  text-align: center;
+}
+#sirumoku .introduce{
+  text-align: center;
+}
+#sirumoku .Image img{
+  width: 100%;
+  height: 500px;
+}
+.Image a{
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  color: #333;
+}
+.tab_link{
+  position: relative;
+  bottom: 100px;
+}
+.tab_link_inside{
+  color: #fff;
+  font-size: 20px;
+  padding: 20px 50px;
+  border: solid 1px #fff;
+  box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-ms-box-sizing:border-box;
+	-o-box-sizing:border-box;
+}
+.intro{
+  width: 40%;
+  margin: 0 auto;
+}
+.intro p{
+  font-size: 16px;
+  text-align: center;
+}
+.intro .intro_margin{
+  margin-top: 10px;
+}
+.sirumoku_datas table{
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+.s_data_list{
+  background-color: #2394ff;
+}
+.s_data_topic{
+  background-color: #e5edf3;
+}
+.sirumoku_datas th{
+  text-align: center;
+}
+.s_data_topic .s_data_day, .s_data_topic .s_data_time{
+  position: relative;
+  top: 10px;
+}
+.s_past{
+  width: auto;
+  height: 20px;
+}
+.s_past span{
+  float: right;
+  position: relative;
+  right: 40px;
+}
+.s_past a{
+  text-decoration: none;
+  color: #333;
+}

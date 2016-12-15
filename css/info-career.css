@@ -1,0 +1,85 @@
+body{
+	margin: 0;
+	padding: 0;
+}
+/* ナビゲーションメニューのCSS */
+h1{
+	width: 980px;
+	margin: 0 auto;
+}
+
+/* コンテンツ部分 */
+.content{
+	width: 980px;
+}
+
+.position_table{
+	width: 980px;
+	margin: 0 auto 50px;
+}
+table {
+	border-collapse: collapse;
+	width:100%;
+}
+
+th.t_top{
+	border-top:  #be1309 4px solid;
+}
+th.td_top{
+	border-top: #b3b3b3 4px solid;
+}
+th {
+	border-bottom: #e3e3e3 1px dotted;
+	text-align: left;
+	padding: 10px;
+	font-weight: normal;
+}
+td {
+	border-bottom: #e3e3e3 1px solid;
+	text-align: center;
+	padding: 10px;
+}
+
+table.trhover tr:hover td{
+	background-color: #d9edf7;
+}
+
+.th_center{
+	text-align: center;
+}
+.th_jobtype{
+	font-size: 30px;
+}
+
+.th_center{
+	text-align: center;
+}
+
+.position_table .boldf td{
+	font-weight: bold;
+}
+
+.boldf{
+	font-weight: bold;
+}
+
+.table_job{
+	width: 980px;
+	margin: 0 auto 50px;
+}
+.table_job_area{
+	width: 980px;
+	margin: 0 auto 100px;
+}
+
+.pos_center{
+	text-align: center;
+}
+.pos_right{
+	text-align: right;
+	padding-right: 2px;
+}
+.select_department{
+	width: 980px;
+	margin: 10px auto 10px;
+}
