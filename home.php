@@ -1,3 +1,7 @@
+<?php
+require('dbconnect.php');
+require('calendar.php');
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -54,7 +58,6 @@
         <div class="center">
           <p class="contentsTitle">スケジュール</p>
         </div>
-        <?php require('calendar.php'); ?>
         <h3><?php echo $year; ?>年<?php echo $month; ?>月</h3>
         <table>
           <tr>
@@ -88,7 +91,6 @@
               <?php echo $value['day']; ?>
               <br>
               <?php
-              require('dbconnect.php');
               $recordSet=mysqli_query($db, 'SELECT * FROM calendar_datas ORDER BY id DESC');
               while($table = mysqli_fetch_assoc($recordSet)){
                 if (htmlspecialchars($table['day']) == $value['day'] && htmlspecialchars($table['month']) == $month && htmlspecialchars($table['year']) == $year) {
