@@ -116,8 +116,8 @@ require('calendar.php');
         <div class="introduce">
           <span>県内企業が自社の魅力・実力を学生に紹介する、学内企業説明会</span>
         </div>
-        <div class="Image">
-          <img src="img/pic/career_2.png" alt="" />
+        <div class="image">
+          <img src="img/pic/sirumoku.jpg" alt="" />
           <div class="tab_link">
             <a href="#"><span class="tab_link_inside">申し込みはこちら</span></a>
           </div>
