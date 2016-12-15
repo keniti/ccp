@@ -79,8 +79,8 @@ if (isset($_POST['department_id']) && $_POST['department_id'] != 0) {
     <title>就職情報</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/info-career.css">
     <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/info-career.css">
   </head>
 
   <body>
@@ -100,6 +100,12 @@ if (isset($_POST['department_id']) && $_POST['department_id'] != 0) {
       <div class="clear"></div>
     </header>
     <!-- コンテンツ -->
+    <script type="text/javascript">
+      function move_to_intern_page(job_alpha){
+        var str = "intern2.php?business_type=" + job_alpha;
+        document.location = str;
+      }
+    </script>
     <div class="container content">
       <div class="row">
         <div class="col-md4">
@@ -107,7 +113,7 @@ if (isset($_POST['department_id']) && $_POST['department_id'] != 0) {
             <blockquote>
               <p>工学部の就職概況</p>
             </blockquote>
-            <table class="table-striped trhover" width="100%">
+            <table class="table-striped trhover" cellpadding="0">
               <tr class="boldf">
                 <th class="t_top boldf">年度</th>
                 <th class="th_top" align="center">25年度</th>
@@ -126,7 +132,7 @@ if (isset($_POST['department_id']) && $_POST['department_id'] != 0) {
             <blockquote>
               <p>業種別求人・就職状況(平成27年度)</p>
             </blockquote>
-            <table class="table table-bordered table-striped trhover" width="100%">
+            <table class="table table-bordered table-striped trhover" width="100%" cellspacing='1' cellpadding='0'>
               <tr>
                 <th class="th_center th_jobtype" colspan="2" rowspan="2">業種</td>
                 <th colspan="3" class="th_center"align="center">求人企業数(人)</td>
@@ -143,8 +149,8 @@ if (isset($_POST['department_id']) && $_POST['department_id'] != 0) {
                 <th>環境</th>
                 <th>計</th>
               </tr>
-                <?php foreach ($job_lists as $job_list): ?>
-                  <tr>
+              <?php foreach ($job_lists as $job_list): ?>
+                  <tr onclick = "move_to_intern_page('<?php echo $job_list['job_alpha']; ?>')">
                     <td class="pos_center"><?php echo $job_list['job_alpha']; ?></td>
                     <td><?php echo $job_list['industy_type']; ?></td>
                     <td class="pos_right"><?php echo $job_list['in_prefec']; ?></td>
@@ -155,13 +161,13 @@ if (isset($_POST['department_id']) && $_POST['department_id'] != 0) {
                     <td class="pos_right"><?php echo $job_list['info']; ?></td>
                     <td class="pos_right"><?php echo $job_list['bio']; ?></td>
                     <td class="pos_right"><?php echo $job_list['environment']; ?></td>
-                    <td class="pos_right"><?php echo sum_num_private_decision($job_list['machine'], $job_list['intellect'], $job_list['info'], $job_list['bio'], $job_list['environment']); ?>
+                    <td class="pos_right">
+                     <?php echo sum_num_private_decision($job_list['machine'], $job_list['intellect'], $job_list['info'], $job_list['bio'], $job_list['environment']); ?>
                     </td>
                   </tr>
-                <?php endforeach; ?>
+              <?php endforeach; ?>
             </table>
           </div>
-
           <!-- 地域別就職情報 -->
           <div class="table_job_area">
             <blockquote>

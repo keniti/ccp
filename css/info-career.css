@@ -1,13 +1,6 @@
 body{
-	margin: 0;
 	padding: 0;
 }
-/* ナビゲーションメニューのCSS */
-h1{
-	width: 980px;
-	margin: 0 auto;
-}
-
 /* コンテンツ部分 */
 .content{
 	width: 980px;
