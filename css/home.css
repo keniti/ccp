@@ -127,11 +127,11 @@ tr.days td{
 #sirumoku .introduce{
   text-align: center;
 }
-#sirumoku .Image img{
-  width: 100%;
-  height: 500px;
+#sirumoku .image img{
+  display:block;
+  margin: 0 auto;
 }
-.Image a{
+.image a{
   display: block;
   text-align: center;
   text-decoration: none;
