@@ -169,16 +169,6 @@
 				 ?>
 			</table>
 		</div>
-		<!-- 以下テスト用 -->
-<!--
-		<form action='intern.php' method='post'>
-			<input type='hidden' name='business_type' value='B'>
-			<input type='submit' value='B'>
-		</form>
-		<form action='intern.php' method='post'>
-			<input type='hidden' name="business_type" value='C'>
-			<input type="submit" value='C'>
-		</form> -->
 		<?php include('_footer.html'); ?>
 	</body>
 </html>
