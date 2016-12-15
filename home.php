@@ -25,7 +25,7 @@
     </header>
     <div class="contents">
       <div class="topImage">
-        <img src="img/pic/career_3.jpg" alt="" />
+        <img src="img/pic/s_career_3.jpg" alt="" />
       </div>
       <div class="tabs">
         <ul>
