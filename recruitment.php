@@ -32,76 +32,88 @@ $ja = array(10 => '建設業', 11 => '情報通信業', 12 => '教育・学習�
     <link rel="stylesheet" href="css/recruitment.css">
   </head>
   <body>
-  <?php include('header.html'); ?>
-  <div class="searchform">
-    <form class="searchform_re" action="recruitment.php#result" method="post">
-      <ul>
-        <li><input type="checkbox" name="industryType[]" value="1">すべて選択</li>
-        <li><input type="checkbox" name="industryType[]" value="10">建設業</li>
-        <li><input type="checkbox" name="industryType[]" value="11">情報通信業</li>
-        <li><input type="checkbox" name="industryType[]" value="12">教育・学習支援業</li>
-        <li><input type="checkbox" name="industryType[]" value="13">製造業</li>
-        <li><input type="checkbox" name="industryType[]" value="14">金融業・保険業</li>
-        <li><input type="checkbox" name="industryType[]" value="15">公務</li>
-        <li><input type="checkbox" name="industryType[]" value="1000">その他</li>
-      </ul>
-      <input class="submit" type="submit" name="検索">
-      <input class="reset" type="reset" name="リセット">
-    </form>
-  </div>
-  <section>
-    <table>
-      <tr>
-        <th>企業名</th>
-        <th>業種</th>
-        <th>住所</th>
-        <th>HP</th>
-      </tr>
-      <?php
-      if (empty($_POST['industryType'])){
-        while ($table = mysqli_fetch_assoc($recordSet)) {
-      ?>
+    <header>
+      <h1>
+        <img class="logo" src="img/tpu_logo_set.svg" alt="TPUのロゴ"/>
+      </h1>
+      <!-- ナビメニュー -->
+      <div class="nav-menu">
+        <ul id="menu">
+          <li id="home"><a class="unselected_tab" href="home.php">ホーム</a></li>
+          <li id="info-career"><a class="unselected_tab" href="info_career.php">就職情報</a></li>
+          <li id="intern"><a class="selected_tab" href="recruitment.php">求人情報</a></li>
+        </ul>
+      </div>
+      <div class="clear"></div>
+    </header>
+    <div class="searchform">
+      <form class="searchform_re" action="recruitment.php#result" method="post">
+        <ul>
+          <li><input type="checkbox" name="industryType[]" value="1">すべて選択</li>
+          <li><input type="checkbox" name="industryType[]" value="10">建設業</li>
+          <li><input type="checkbox" name="industryType[]" value="11">情報通信業</li>
+          <li><input type="checkbox" name="industryType[]" value="12">教育・学習支援業</li>
+          <li><input type="checkbox" name="industryType[]" value="13">製造業</li>
+          <li><input type="checkbox" name="industryType[]" value="14">金融業・保険業</li>
+          <li><input type="checkbox" name="industryType[]" value="15">公務</li>
+          <li><input type="checkbox" name="industryType[]" value="1000">その他</li>
+        </ul>
+        <input class="submit" type="submit" name="検索">
+        <input class="reset" type="reset" name="リセット">
+      </form>
+    </div>
+    <section>
+      <table>
+        <tr>
+          <th>企業名</th>
+          <th>業種</th>
+          <th>住所</th>
+          <th>HP</th>
+        </tr>
+        <?php
+        if (empty($_POST['industryType'])){
+          while ($table = mysqli_fetch_assoc($recordSet)) {
+        ?>
           <tr>
             <td><a href="#"><?php print(htmlspecialchars($table['company_n'])); ?></a></td>
             <td><?php print(htmlspecialchars($table['indust_type'])); ?></td>
             <td><?php print(htmlspecialchars($table['address'])); ?></td>
             <td><a href="<?php print(htmlspecialchars($table['url_list'])); ?>">HP</a></td>
           </tr>
-<?php   }
-      }else{
-        foreach ($result as $value) {
-          if($value == 1){
-            $recordSet = mysqli_query($db, "SELECT * FROM company_datas ORDER BY id DESC");
-            while ($table = mysqli_fetch_assoc($recordSet)) { ?>
-              <div id="result">
-                <tr>
-                  <td><a href="#"><?php print(htmlspecialchars($table['company_n'])); ?></a></td>
-                  <td><?php print(htmlspecialchars($table['indust_type'])); ?></td>
-                  <td><?php print(htmlspecialchars($table['address'])); ?></td>
-                  <td><a href="<?php print(htmlspecialchars($table['url_list'])); ?>">HP</a></td>
-                </tr>
-              </div>
-  <?php     }
-          }else{
-            $recordSet = mysqli_query($db, "SELECT * FROM company_datas WHERE indust_type='$ja[$value]'");
-            while ($table = mysqli_fetch_assoc($recordSet)) {
-?>
-              <div id="result">
-                <tr>
-                  <td><a href="#"><?php print(htmlspecialchars($table['company_n'])); ?></a></td>
-                  <td><?php print(htmlspecialchars($table['indust_type'])); ?></td>
-                  <td><?php print(htmlspecialchars($table['address'])); ?></td>
-                  <td><a href="<?php print(htmlspecialchars($table['url_list'])); ?>">HP</a></td>
-                </tr>
-              </div>
-<?php       }
+<?php     }
+        }else{
+          foreach ($result as $value) {
+            if($value == 1){
+              $recordSet = mysqli_query($db, "SELECT * FROM company_datas ORDER BY id DESC");
+              while ($table = mysqli_fetch_assoc($recordSet)) { ?>
+                <div id="result">
+                  <tr>
+                    <td><a href="#"><?php print(htmlspecialchars($table['company_n'])); ?></a></td>
+                    <td><?php print(htmlspecialchars($table['indust_type'])); ?></td>
+                    <td><?php print(htmlspecialchars($table['address'])); ?></td>
+                    <td><a href="<?php print(htmlspecialchars($table['url_list'])); ?>">HP</a></td>
+                  </tr>
+                </div>
+  <?php       }
+            }else{
+              $recordSet = mysqli_query($db, "SELECT * FROM company_datas WHERE indust_type='$ja[$value]'");
+              while ($table = mysqli_fetch_assoc($recordSet)) { ?>
+                <div id="result">
+                  <tr>
+                    <td><a href="#"><?php print(htmlspecialchars($table['company_n'])); ?></a></td>
+                    <td><?php print(htmlspecialchars($table['indust_type'])); ?></td>
+                    <td><?php print(htmlspecialchars($table['address'])); ?></td>
+                    <td><a href="<?php print(htmlspecialchars($table['url_list'])); ?>">HP</a></td>
+                  </tr>
+                </div>
+<?php         }
+            }
           }
-        }
-      } ?>
-    </table>
-    <ul>
-      <?php if($page>1){ ?>
-        <li><a href="recruitment.php?page=<?php print($page-1); ?>">前のページ</a></li>
+        } ?>
+      </table>
+      <ul>
+        <?php if($page>1){ ?>
+          <li><a href="recruitment.php?page=<?php print($page-1); ?>">前のページ</a></li>
         <?php
         }else if($page<$maxPage){
         ?>
@@ -110,7 +122,7 @@ $ja = array(10 => '建設業', 11 => '情報通信業', 12 => '教育・学習�
         }else{}
         ?>
       </ul>
-  </section>
-  <?php include('_footer.html'); ?>
+    </section>
+    <?php include('_footer.html'); ?>
   </body>
 </html>
