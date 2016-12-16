@@ -173,11 +173,11 @@ footer .copyright{
   list-style-type: none;
 	margin: 0;
 }
-.linkList ul.internal > li{
+.linkList ul.internal li{
   float: left;
 	margin-right: 40px;
 }
-.linkList ul.internal > li h5{
+.linkList ul.internal li h5{
 	text-decoration: underline;
 }
 .linkList ul.foot_list{
