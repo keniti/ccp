@@ -129,6 +129,7 @@ tr.days td{
 }
 #sirumoku .image img{
   display:block;
+  width: 80%;
   margin: 0 auto;
 }
 .image a{
