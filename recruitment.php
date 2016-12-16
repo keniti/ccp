@@ -9,10 +9,10 @@ if (empty($_POST['industryType'])) {
 else if(isset($_POST['industryType'])){
   $result = $_POST['industryType'];
   //value値を['industryType']と同じ業種へ変換
-  $ja = array(10 => '建設業', 11 => '情報通信業', 12 => '教育・学習支援業', 13 => '製造業', 14 => '金融業・保険業', 15 => '公務', 1000 => 'その他');
+  $ja = array(30 => '建設業', 31 => '情報通信業', 32 => '教育・学習支援業', 33 => '製造業', 34 => '金融業・保険業', 35 => '公務', 3000 => 'その他');
   foreach ($result as $value) {
-    if($value == 1){
-        $record = mysqli_query($db, "SELECT * FROM company_datas ORDER BY id DESC");
+    if($value == 3){
+      $record = mysqli_query($db, "SELECT * FROM company_datas ORDER BY id DESC");
     }else{
       $record = mysqli_query($db, "SELECT * FROM company_datas WHERE indust_type='$ja[$value]'");
     }
@@ -46,20 +46,52 @@ else if(isset($_POST['industryType'])){
     </header>
     <div class="searchform">
       <form class="searchform_re" action="recruitment.php#result" method="post">
-        <ul class="indust">
-          <li><input type="checkbox" name="industryType[]" value="1">すべて選択</li>
-          <li><input type="checkbox" name="industryType[]" value="10">建設業</li>
-          <li><input type="checkbox" name="industryType[]" value="11">情報通信業</li>
-          <li><input type="checkbox" name="industryType[]" value="12">教育・学習支援業</li>
-          <li><input type="checkbox" name="industryType[]" value="13">製造業</li>
-          <li><input type="checkbox" name="industryType[]" value="14">金融業・保険業</li>
-          <li><input type="checkbox" name="industryType[]" value="15">公務</li>
-          <li><input type="checkbox" name="industryType[]" value="1000">その他</li>
+        <ul class="local">
+          <li><input type="checkbox" name="local" value="1">すべて選択</li>
+          <li><input type="checkbox" name="local" value="11">県内</li>
+          <li><input type="checkbox" name="local" value="12">県外</li>
         </ul>
+        <ul>
+          <li><input type="checkbox" name="department" class="department" value="2">すべて選択</li>
+          <li><input type="checkbox" name="department" class="department" value="21">機械システム工学科</li>
+          <li><input type="checkbox" name="department" class="department" value="23">知能デザイン工学科</li>
+          <li><input type="checkbox" name="department" class="department" value="24">情報システム工学科</li>
+          <li><input type="checkbox" name="department" class="department" value="25">生物工学科</li>
+          <li><input type="checkbox" name="department" class="department" value="26">環境工学科</li>
+        </ul>
+        <ul class="indust_1">
+          <li><input type="checkbox" name="industryType[]" calss="indust" value="3">すべて選択</li>
+        </ul>
+        <ul class="indust_2">
+          <li><input type="checkbox" name="industryType[]" calss="indust" value="30">農業・林業</li>
+          <li><input type="checkbox" name="industryType[]" calss="indust" value="32">漁業</li>
+          <li><input type="checkbox" name="industryType[]" calss="indust" value="33">鉱業，採石業，砂利採取行</li>
+          <li><input type="checkbox" name="industryType[]" calss="indust" value="34">建設業</li>
+          <li><input type="checkbox" name="industryType[]" calss="indust" value="35">製造業</li>
+          <li><input type="checkbox" name="industryType[]" calss="indust" value="36">電気・ガス・熱供給・水道業</li>
+          <li><input type="checkbox" name="industryType[]" calss="indust" value="37">情報通信業</li>
+          <li><input type="checkbox" name="industryType[]" calss="indust" value="38">運輸業，郵便業</li>
+          <li><input type="checkbox" name="industryType[]" calss="indust" value="39">卸売業，小売業</li>
+          <li><input type="checkbox" name="industryType[]" calss="indust" value="300">金融業，保険業</li>
+        </ul>
+        <ul class="indust_3">
+          <li><input type="checkbox" name="industryType[]" calss="indust" value="301">不動産業，物品賃貸業</li>
+          <li><input type="checkbox" name="industryType[]" calss="indust" value="302">学術研究，専門・技術サービス</li>
+          <li><input type="checkbox" name="industryType[]" calss="indust" value="303">宿泊業，飲食サービス業</li>
+          <li><input type="checkbox" name="industryType[]" calss="indust" value="304">生活関連サービス業，娯楽業</li>
+          <li><input type="checkbox" name="industryType[]" calss="indust" value="305">教育，学習支援業</li>
+          <li><input type="checkbox" name="industryType[]" calss="indust" value="306">医療，福祉</li>
+          <li><input type="checkbox" name="industryType[]" calss="indust" value="307">複合サービス事業</li>
+          <li><input type="checkbox" name="industryType[]" calss="indust" value="308">サービス業(他に分類されないもの)</li>
+          <li><input type="checkbox" name="industryType[]" calss="indust" value="309">公務(他に分類されるものを除く)</li>
+          <li><input type="checkbox" name="industryType[]" calss="indust" value="3000">分類不能の産業</li>
+        </ul>
+        <div class="clear"></div>
         <input class="submit" type="submit" name="検索">
         <input class="reset" type="reset" name="リセット">
       </form>
     </div>
+    <div class="clear"></div>
     <section>
       <table>
         <tr>
@@ -77,7 +109,7 @@ else if(isset($_POST['industryType'])){
             <td><?php print(htmlspecialchars($table['address'])); ?></td>
           </tr>
 <?php     }
-        }else if(isset($_POST['industryType']) && $value == 1){
+        }else if(isset($_POST['industryType']) && $value == 3){
           while ($table = mysqli_fetch_assoc($record)) { ?>
             <div id="result">
               <tr>
@@ -87,7 +119,7 @@ else if(isset($_POST['industryType'])){
               </tr>
             </div>
 <?php     }
-        }else if(isset($_POST['industryType']) && $value != 1){
+        }else if(isset($_POST['industryType']) && $value != 3){
           while ($table = mysqli_fetch_assoc($record)) { ?>
             <div id="result">
               <tr>
