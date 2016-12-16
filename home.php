@@ -11,6 +11,7 @@ require('calendar.php');
     <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/home.css">
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
   </head>
   <body>
     <header>
@@ -41,6 +42,7 @@ require('calendar.php');
       <div id="information">
         <div class="center">
           <p class="contentsTitle">新着情報</p>
+          <p class="b_contentsTitle">News</p>
           <div class="news_1">
       			<p>2016/10/12 <span></span>キャリア形成論 <span></span>「第3回　キャリア形成論」, 2年生へのお知らせ</p>
       		</div>
@@ -57,6 +59,7 @@ require('calendar.php');
       <div id="calendar">
         <div class="center">
           <p class="contentsTitle">スケジュール</p>
+          <p class="b_contentsTitle">Schedule</p>
         </div>
         <h3><?php echo $year; ?>年<?php echo $month; ?>月</h3>
         <table>
@@ -112,9 +115,7 @@ require('calendar.php');
       <div id="sirumoku">
         <div class="center">
           <p class="contentsTitle">シルモク</p>
-        </div>
-        <div class="introduce">
-          <span>県内企業が自社の魅力・実力を学生に紹介する、学内企業説明会</span>
+          <p class="b_contentsTitle">企業を知る木曜日</p>
         </div>
         <div class="image">
           <img src="img/pic/sirumoku.jpg" alt="" />
@@ -124,10 +125,10 @@ require('calendar.php');
         </div>
         <div class="intro">
           <p>
-            企業を知る木曜日、略して「シルモク」
+            県内企業が自社の魅力・実力を学生に紹介する
           </p>
           <p>
-            本学で開催している説明会のことです。
+            学内企業説明会
           </p>
           <p class="intro_margin">
             富山県に関係のある企業の方にお越しいただき

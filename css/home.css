@@ -35,13 +35,15 @@
   margin-bottom: 10px;
 }
 /*新着情報*/
-.center p.contentsTitle{
+p.contentsTitle{
   display: inline;
   font-size: 30px;
   color: #333;
   padding-bottom: 10px;
-  border-bottom: solid 1px #333;
   margin: 0;
+}
+.b_contentsTitle{
+  color: #b3b3b3;
 }
 #information{
 	width: 80%;
@@ -108,13 +110,6 @@ tr.days td{
   height: 30px;
   border-bottom: solid 1px #ccc;
 }
-/*recruitment.php*/
-/*.send ul{
-  list-style-type: none;
-}*/
-/*#rec li{
-  list-style: none;
-}*/
 .send th{
   font-size: 15px;
   font-weight: lighter;
@@ -122,9 +117,6 @@ tr.days td{
 }
 .send td{
   font-size: 12px;
-  text-align: center;
-}
-#sirumoku .introduce{
   text-align: center;
 }
 #sirumoku .image img{
