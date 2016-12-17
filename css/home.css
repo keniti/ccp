@@ -1,7 +1,10 @@
 /*home.php*/
+.topImage{
+  width: 90%;
+  margin: 0 auto;
+}
 .topImage img{
   width: 100%;
-  height: auto;
 }
 .tabs{
   width: 496px;
