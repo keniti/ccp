@@ -91,22 +91,27 @@ footer{
 	clear: both;
 	width: 100%;
 	border-top: 4px solid #2390de;
+	background: #e5edf3;
 	margin-top: 10px;
 }
 .linkList{
-	width: 100%;
-	height: 200px;
-	padding: 0 30px;
-	background: #e5edf3;
-	border-bottom: solid 1px #2390de;
+	width: 70%;
+	margin: 0 auto;
 }
 .linkList h3{
 	margin: 0;
 	padding: 10px 0;
-	font-size: 25px;
+	font-size: 20px;
+	font-weight: bolder;
 }
 .foot_topic{
-	font-size: 20px;
+	font-size: 15px;
+	font-weight: bold;
+}
+.foot_topics{
+	margin-top: 0;
+	font-size: 15px;
+	font-weight: bold;
 }
 .linkList ul.internal{
   list-style-type: none;
@@ -114,51 +119,36 @@ footer{
 }
 .linkList ul.internal li{
   float: left;
-	margin-right: 40px;
-}
-.linkList ul.internal li h5{
-	text-decoration: underline;
+	margin-right: 20px;
 }
 .linkList ul.foot_list{
-	padding-left: 40px;
+	padding-left: 20px;
   list-style-image: url('../img/icon/ic_arrow.svg');
 }
 .linkList ul.foot_list li{
   clear: both;
+	margin: 0;
+	font-size: 13px;
 }
 .linkList ul .foot_list li a{
 	text-decoration: none;
 	color: #333;
 }
-.footer-menu{
-  clear: both;
-	width: 80%;
-	margin: 0 auto;
+.foot_list li ul{
+	padding-left: 10px;
+  list-style-image: url('../img/icon/ic_arrow.svg');
 }
-.footer-menu ul{
+.foot_link{
 	float: left;
-  list-style-type: none;
-  padding: 0;
-	margin: 0;
-	margin-top: 10px;
+	margin-bottom: 20px;
 }
-.footer-menu ul li{
-  float: left;
-  border-left: solid 1px #333;
-  padding: 0 5px;
-}
-.footer-menu ul li:first-child{
-  border: none;
-  padding-left: none;
-}
-.footer-menu ul li h5{
-	margin: 0;
-}
-.footer-menu ul li a{
-  text-decoration: none;
-  color: #333;
+.foot_topic_link{
+	margin-bottom: none;
 }
 footer .copyright{
 	clear: both;
 	width: 100%;
+	text-align: center;
+	background-color: #2390de;
+	color: #fff;
 }
