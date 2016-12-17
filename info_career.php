@@ -85,9 +85,7 @@ if (isset($_POST['department_id']) && $_POST['department_id'] != 0) {
   <body>
     <!-- ヘッダー -->
     <header>
-      <h1>
-        <img class="logo" src="img/tpu_logo_set.svg" alt="TPUのロゴ"/>
-      </h1>
+      <img class="logo" src="img/tpu_logo_set.svg" alt="TPUのロゴ"/>
       <!-- ナビメニュー -->
       <div class="nav-menu">
         <ul id="menu">
