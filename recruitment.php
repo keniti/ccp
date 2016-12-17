@@ -1,12 +1,13 @@
 <?php
 //connect to databese
 require('dbconnect.php');
-//formでpostされた情報を受け取る
+//エラーを非表示にする
 //ini_set('display_errors', 0);
 if (empty($_POST['industryType'])) {
   $record = mysqli_query($db, 'SELECT * FROM company_datas ORDER BY id DESC');
 }
 else if(isset($_POST['industryType'])){
+  //formでpostされた情報を受け取る
   $result = $_POST['industryType'];
   //value値を['industryType']と同じ業種へ変換
   $ja = array(30 => '建設業', 31 => '情報通信業', 32 => '教育・学習支援業', 33 => '製造業', 34 => '金融業・保険業', 35 => '公務', 3000 => 'その他');
