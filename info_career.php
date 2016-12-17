@@ -82,7 +82,6 @@ if (isset($_POST['department_id']) && $_POST['department_id'] != 0) {
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/info-career.css">
   </head>
-
   <body>
     <!-- ヘッダー -->
     <header>
@@ -106,7 +105,7 @@ if (isset($_POST['department_id']) && $_POST['department_id'] != 0) {
         document.location = str;
       }
     </script>
-    <div class="container content">
+    <div class="container contents">
       <div class="row">
         <div class="col-md4">
           <div class="position_table">

@@ -1,10 +1,14 @@
 body{
 	background-color: #fff;
-	width: 980px;
+	width: 100%;
 	margin: 0 auto;
 }
 h1, h2, p{
 	width: 100%;
+	margin: 0 auto;
+}
+header{
+	width: 80%;
 	margin: 0 auto;
 }
 .logo{
@@ -77,7 +81,10 @@ ul#menu > li .unselected_tab:hover{
 	border-bottom: 6px solid #0082df;
 }
 /* ここまでheader */
-
+.contents{
+	width: 80%;
+	margin: 0 auto;
+}
 /*footer部分*/
 /*footerのスタイル*/
 footer{
@@ -125,6 +132,8 @@ footer{
 }
 .footer-menu{
   clear: both;
+	width: 80%;
+	margin: 0 auto;
 }
 .footer-menu ul{
 	float: left;
@@ -151,4 +160,5 @@ footer{
 }
 footer .copyright{
 	clear: both;
+	width: 100%;
 }
