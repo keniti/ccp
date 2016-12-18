@@ -111,7 +111,7 @@ $recordSet=mysqli_query($db, 'SELECT * FROM calendar_datas');
           $cnt = 0;
           endif;
           endforeach;
-          ?>    
+          ?>
         </table>
       </div>
       <div id="sirumoku">
@@ -154,7 +154,7 @@ $recordSet=mysqli_query($db, 'SELECT * FROM calendar_datas');
           </table>
         </div>
         <div class="s_past">
-          <span><a href="#">過去のシルモクをみる</a></span>
+          <span><a href="sirumoku.php">過去のシルモクをみる</a></span>
         </div>
       </div>
     </div>
