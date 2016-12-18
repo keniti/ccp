@@ -88,7 +88,8 @@ p.contentsTitle{
   margin: 0;
 }
 #information .info-date{
-  width: 250px;
+  width: 200px;
+  padding-left: 20px;
   text-align: center;
 }
 #information .info-tags{
@@ -126,7 +127,7 @@ p.contentsTitle{
   margin: 0;
 }
 #information .info-tag:first-child{
-  margin-left: 250px;
+  margin-left: 200px;
 }
 .allnews{
   margin-top: 10px;
