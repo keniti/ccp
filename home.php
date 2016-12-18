@@ -45,37 +45,26 @@ $recordSet=mysqli_query($db, 'SELECT * FROM calendar_datas');
           <p class="contentsTitle">新着情報</p>
           <p class="b_contentsTitle">News</p>
         </div>
-        <table>
+        <div class="info-content">
           <?php
           while ($table = mysqli_fetch_assoc($record)) {
           ?>
-            <tr>
-              <td><?php print(htmlspecialchars($table['data'])); ?></td>
-              <td><?php print(htmlspecialchars($table['title'])); ?></td>
-              <td><?php print(htmlspecialchars($table['target'])); ?></td>
-              <td><?php print(htmlspecialchars($table['category'])); ?></td>
-            </tr>
+            <div class="info-topic">
+              <div class="info-date"><p><?php echo $table['year'], "/", $table['month'], "/", $table['day']; ?></p></div>
+              <div class="info-title"><p><?php echo htmlspecialchars($table['title']); ?></p></div>
+            </div>
+            <div class="info-tags">
+              <div class="info-tag"><p><?php echo htmlspecialchars($table['target']); ?></p></div>
+              <div class="info-tag"><p><?php echo htmlspecialchars($table['category']); ?></p></div>
+            </div>
           <?php
           }
           ?>
-        </table>
+        </div>
         <div class="allnews">
           <span><a href="allnews.php">新着情報一覧</a></span>
         </div>
       </div>
-        <div class="center">
-          <div class="news_1">
-      			<p>2016/10/12 <span></span>キャリア形成論 <span></span>「第3回　キャリア形成論」, 2年生へのお知らせ</p>
-      		</div>
-
-      		<div class="news_2">
-      			<p>2016/10/03 <span></span>キャリア形成論 <span></span>「第2回　キャリア形成論」, 1年生へのお知らせ</p>
-      		</div>
-
-      		<div class="news_3">
-      			<p>2016/09/12 <span></span>学内合同説明会 <span></span>「第3回　シルモク開催」, 参加申し込みに関するお知らせ</p>
-      		</div>
-        </div>
       <div id="calendar">
         <div class="center">
           <p class="contentsTitle">スケジュール</p>

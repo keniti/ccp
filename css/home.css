@@ -22,16 +22,31 @@
   text-align: center;
   font-size: 20px;
   width: 150px;
-  border: solid 1px #807f7f;
   margin-left: 20px;
+  border: solid 1px #807f7f;
+  box-sizing:border-box;
+  -webkit-bo-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -ms-box-sizing:border-box;
+  -o-box-sizing:border-box;
+  border-radius: 10px;
+}
+.tabs li:hover{
+  background-color: #333;
+  border-color: #333;
 }
 .tabs li:first-child{
   margin: 0;
 }
 .tabs li a{
+  width: 100%;
+  padding: 5px;
   color: #807f7f;
   text-decoration: none;
   display: block;
+}
+.tabs li a:hover{
+  color: #fff;
 }
 .center{
   text-align: center;
@@ -52,15 +67,77 @@ p.contentsTitle{
 	width: 80%;
   margin: 0 auto;
   color: #212121;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
 }
-#pinformation h1{
-	font-size: 28px;
-	border-bottom-style: 1px solid;
-	text-align: center;
+#information .info-content{
+  clear: both;
+  width: 100%;
 }
-#information p{
-	margin-left: 2px;
+#information .info-topic{
+  clear: both;
+  width: 100%;
+  border-top: solid 1px #e6e6fa;
+}
+#information .info-topic div{
+  float: left;
+  color: #333;
+  font-size: 13px;
+  padding-top: 10px;
+}
+#information .info-topic p{
+  margin: 0;
+}
+#information .info-date{
+  width: 250px;
+  text-align: center;
+}
+#information .info-tags{
+  clear: both;
+  width: 100%;
+  font-size: 10px;
+}
+#information .info-tags div{
+  float: left;
+}
+#information .info-tag{
+  margin-bottom: 5px;
+  margin-top: 2px;
+  margin-right: 10px;
+  float: left;
+  padding: 2px;
+  border: solid 1px #ccc;
+  box-sizing:border-box;
+  -webkit-bo-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-ms-box-sizing:border-box;
+	-o-box-sizing:border-box;
+  border-radius: 6px;
+}
+#information .info-tag:hover{
+  background-color: #333;
+  border-color: #333;
+  color: #fff;
+}
+#information .info-tags:last-child{
+  height: 28px;
+  border-bottom: solid 1px #e6e6fa;
+}
+.info-tag p{
+  margin: 0;
+}
+#information .info-tag:first-child{
+  margin-left: 250px;
+}
+.allnews{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  float: right;
+  position: relative;
+  right: 40px;
+}
+.allnews a{
+  text-decoration: none;
+  color: #333;
 }
 .news_1{
 	border-top: 1px solid;
