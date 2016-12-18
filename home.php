@@ -122,7 +122,7 @@ $recordSet=mysqli_query($db, 'SELECT * FROM calendar_datas');
         <div class="image">
           <img src="img/pic/sirumoku.jpg" alt="" />
           <div class="tab_link">
-            <a href="#"><span class="tab_link_inside">申し込みはこちら</span></a>
+            <a href="sirumoku-subscription.php"><span class="tab_link_inside">申し込みはこちら</span></a>
           </div>
         </div>
         <div class="intro">
