@@ -106,21 +106,20 @@ p.contentsTitle{
   text-align: center;
   padding: 0 10px;
 }
+#calendar table tr{
+  height: 80px;
+}
+#calendar table tr:last-child{
+  border-bottom: solid 1px #ccc;
+}
+#calendar table tr.day{
+  height: 25px;
+}
 tr.days td{
   border: none;
 }
 .event{
-  height: 30px;
   border-bottom: solid 1px #ccc;
-}
-.send th{
-  font-size: 15px;
-  font-weight: lighter;
-  width: 100px;
-}
-.send td{
-  font-size: 12px;
-  text-align: center;
 }
 #sirumoku .image img{
   display:block;

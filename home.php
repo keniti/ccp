@@ -3,6 +3,7 @@ require('dbconnect.php');
 require('calendar.php');
 
 $record = mysqli_query($db, 'SELECT * FROM news ORDER BY id DESC LIMIT 5');
+$recordSet=mysqli_query($db, 'SELECT * FROM calendar_datas');
 ?>
 <!DOCTYPE html>
 <html>
@@ -79,7 +80,7 @@ $record = mysqli_query($db, 'SELECT * FROM news ORDER BY id DESC LIMIT 5');
         </div>
         <h3><?php echo $year; ?>年<?php echo $month; ?>月</h3>
         <table>
-          <tr>
+          <tr class="day">
             <th>日</th>
             <th>月</th>
             <th>火</th>
@@ -90,42 +91,27 @@ $record = mysqli_query($db, 'SELECT * FROM news ORDER BY id DESC LIMIT 5');
           </tr>
           <tr class="days">
             <?php
-            $dsn = 'mysql:host=localhost;dbname=ccp';//データベース情報
-            try {$pdo = new PDO(
-            $dsn,'root','',
-            [
-                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            ]
-            );
-          }catch (PDOException $e) {
-            header('Content-Type: text/plain; charset=UTF-8', true, 500);
-            exit($e->getMessage());
-          }
-          ?>
-            <?php $cnt = 0; ?>
-            <?php foreach ($calendar as $key => $value): ?>
+            $cnt = 0;
+            foreach ($calendar as $key => $value):
+            ?>
             <td>
-              <?php $cnt++; ?>
-              <?php echo $value['day']; ?>
-              <br>
-              <?php
-              $recordSet=mysqli_query($db, 'SELECT * FROM calendar_datas ORDER BY id DESC');
+              <?php $cnt++;
+              echo $value['day'];
+              echo "</br>";
               while($table = mysqli_fetch_assoc($recordSet)){
                 if (htmlspecialchars($table['day']) == $value['day'] && htmlspecialchars($table['month']) == $month && htmlspecialchars($table['year']) == $year) {
                   echo htmlspecialchars($table['event']);
                 }
-              }?>
+              }
+              ?>
             </td>
             <?php if ($cnt == 7): ?>
           </tr>
-          <tr class="event">
-          </tr>
-          <tr>
-            <?php $cnt = 0; ?>
-            <?php endif; ?>
-            <?php endforeach; ?>
-          </tr>
+          <?php
+          $cnt = 0;
+          endif;
+          endforeach;
+          ?>    
         </table>
       </div>
       <div id="sirumoku">
