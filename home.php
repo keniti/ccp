@@ -59,6 +59,9 @@ $recordSet=mysqli_query($db, 'SELECT * FROM calendar_datas');
           }
           ?>
         </table>
+        <div class="allnews">
+          <span><a href="allnews.php">新着情報一覧</a></span>
+        </div>
       </div>
         <div class="center">
           <div class="news_1">
