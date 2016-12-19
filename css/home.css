@@ -114,11 +114,11 @@ p.contentsTitle{
 	-o-box-sizing:border-box;
   border-radius: 6px;
 }
-#information .info-tag:hover{
+/*#information .info-tag:hover{
   background-color: #333;
   border-color: #333;
   color: #fff;
-}
+}*/
 #information .info-tags:last-child{
   height: 28px;
   border-bottom: solid 1px #e6e6fa;
@@ -139,26 +139,6 @@ p.contentsTitle{
 .allnews a{
   text-decoration: none;
   color: #333;
-}
-.news_1{
-	border-top: 1px solid;
-  margin-top: 15px;
-  text-align: left;
-	border-color: #e6e6fa;
-	padding: 8px;
-}
-.news_2{
-	border-top: 1px solid;
-	border-color: #e6e6fa;
-  text-align: left;
-	padding: 8px;
-}
-.news_3{
-	border-top: 1px solid;
-	border-bottom: 1px solid;
-	border-color: #e6e6fa;
-  text-align: left;
-	padding: 8px;
 }
 #calendar{
   width: 80%;
