@@ -23,6 +23,6 @@
     <div class="contents">
       <h1>Coming Soon...</h1>
     </div>
-    <?php include('_footer.html'); ?>
+    <?php include('footer.php'); ?>
   </body>
 </html>

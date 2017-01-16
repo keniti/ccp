@@ -10,6 +10,7 @@ $recordSet=mysqli_query($db, 'SELECT * FROM calendar_datas');
   <head>
     <meta charset="utf-8">
     <title>Top</title>
+    <link rel="shortcut icon" href="img/logo/tpu_logo.png">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/common.css">
@@ -18,7 +19,7 @@ $recordSet=mysqli_query($db, 'SELECT * FROM calendar_datas');
   </head>
   <body>
     <header>
-      <img class="logo" src="img/tpu_logo_set.svg" alt="TPUのロゴ"/>
+      <img class="logo" src="img/logo/tpu_logo_set.svg" alt="TPUのロゴ"/>
       <!-- ナビメニュー -->
       <div class="nav-menu">
         <ul id="menu">
@@ -150,6 +151,6 @@ $recordSet=mysqli_query($db, 'SELECT * FROM calendar_datas');
         </div>
       </div>
     </div>
-    <?php include('_footer.html'); ?>
+    <?php include('footer.php'); ?>
   </body>
 </html>

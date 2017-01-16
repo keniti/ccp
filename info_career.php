@@ -77,6 +77,7 @@ if (isset($_POST['department_id']) && $_POST['department_id'] != 0) {
   <head>
     <meta charset="utf-8">
     <title>就職情報</title>
+    <link rel="shortcut icon" href="img/logo/tpu_logo.png">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/common.css">
@@ -85,7 +86,7 @@ if (isset($_POST['department_id']) && $_POST['department_id'] != 0) {
   <body>
     <!-- ヘッダー -->
     <header>
-      <img class="logo" src="img/tpu_logo_set.svg" alt="TPUのロゴ"/>
+      <img class="logo" src="img/logo/tpu_logo_set.svg" alt="TPUのロゴ"/>
       <!-- ナビメニュー -->
       <div class="nav-menu">
         <ul id="menu">
@@ -223,7 +224,7 @@ if (isset($_POST['department_id']) && $_POST['department_id'] != 0) {
       </div>
     </div>
     <!-- フッター -->
-    <?php include('_footer.html'); ?>
+    <?php include('footer.php'); ?>
 
   </body>
 </html>
