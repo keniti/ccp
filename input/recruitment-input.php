@@ -7,8 +7,8 @@
   <body>
     <form action="recruitment-input_do.php" method="post">
       <dl>
-        <dt><label for="company_n">企業名</label></dt>
-        <dd><input type="text" name="company_n" maxlength="50"></dd>
+        <dt><label for="company_name">企業名</label></dt>
+        <dd><input type="text" name="company_name" maxlength="50"></dd>
         <dt><label for="indust_type">業種</label></dt>
         <dd><input type="text" name="indust_type" maxlength="15"></dd>
         <dt><label for="address">住所</label></dt>

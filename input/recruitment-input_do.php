@@ -4,8 +4,8 @@ require('../dbconnect.php');
 
 //$_POSTがからじゃない時に実行
 if (!empty($_POST)) {
-  $sql=sprintf('INSERT INTO company_datas SET company_n="%s", indust_type="%s", address="%s", url_list="%s"',
-    mysqli_real_escape_string($db, $_POST['company_n']),
+  $sql=sprintf('INSERT INTO company_datas SET company_name="%s", indust_type="%s", address="%s", url_list="%s"',
+    mysqli_real_escape_string($db, $_POST['company_name']),
     mysqli_real_escape_string($db, $_POST['indust_type']),
     mysqli_real_escape_string($db, $_POST['address']),
     mysqli_real_escape_string($db, $_POST['url_list']));
