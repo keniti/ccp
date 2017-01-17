@@ -2,11 +2,15 @@ body{
 	padding: 0;
 }
 /* コンテンツ部分 */
-.content{
-	width: 980px;
+.contents{
+	width: 100%;
+}
+.row{
+	width: 80%;
+	margin: 0 auto;
 }
 .position_table{
-	width: 980px;
+	width: 100%;
 	margin: 0 auto 50px;
 }
 table {
@@ -56,11 +60,11 @@ table.trhover tr:hover td{
 }
 
 .table_job{
-	width: 980px;
+	width: 100%;
 	margin: 0 auto 50px;
 }
 .table_job_area{
-	width: 980px;
+	width: 100%;
 	margin: 0 auto 100px;
 }
 
@@ -72,6 +76,6 @@ table.trhover tr:hover td{
 	padding-right: 2px;
 }
 .select_department{
-	width: 980px;
+	width: 100%;
 	margin: 10px auto 10px;
 }

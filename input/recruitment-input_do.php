@@ -24,7 +24,7 @@ if (!empty($_POST)) {
       登録完了
     </p>
     <ul>
-      <li><a href="input.php">登録画面へ戻る</a></li>
+      <li><a href="recruitment-input.php">登録画面へ戻る</a></li>
       <li><a href="recruitment.php">一覧ページへ戻る</a></li>
     </ul>
   </body>

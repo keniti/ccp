@@ -5,7 +5,7 @@
     <title>企業情報の登録</title>
   </head>
   <body>
-    <form action="input_do.php" method="post">
+    <form action="recruitment-input_do.php" method="post">
       <dl>
         <dt><label for="company_n">企業名</label></dt>
         <dd><input type="text" name="company_n" maxlength="50"></dd>
