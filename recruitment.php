@@ -3,44 +3,18 @@
 require('dbconnect.php');
 //エラーを非表示にする
 //ini_set('display_errors', 0);
-
+//$record = mysqli_query($db, "SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id ORDER BY id DESC");
 if (empty($_POST['employment']) && empty($_POST['intern']) && empty($_POST['local']) && empty($_POST['industryType'])) {
-  $page = $_REQUEST['page'];
-  if($page = '') {
-    $page = 1;
-  }
+  // $page = $_REQUEST['page'];
+  // if ($page = '') {
+  //   $page = 1;
+  // }
+  $page = empty($_GET["page"])? 1:$_GET["page"];
   $page = max($page, 1);
-  $recordset = 'SELECT COUNT(*) AS cnt FROM employment_datas';
-  $recordSet = mysqli_query($db, $recordset);
-  $r_table = mysqli_fetch_assoc($recordSet);
-  $maxPage = ceil($r_table['cnt'] / 5);
+  $recordset = mysqli_query($db, "SELECT COUNT(*) AS cnt FROM company_datas WHERE recruit_id = 11");
+  $table = mysqli_fetch_assoc($recordset);
+  $maxPage = ceil($table['cnt'] / 5);
   $start = ($page - 1) * 5;
-
-  $sql = sprintf('SELECT * FROM employment_datas, company_datas, location_datas, industries WHERE employment_datas.company_id=company_datas.company_id AND company_datas.location_id=location_datas.location_id AND company_datas.indust_id=industries.indust_id ORDER BY id DESC LIMIT ' . $start. ',5');
-  $record = mysqli_query($db, $sql) or die(mysqli_error());
-  $table = array();
-  while($set = mysqli_fetch_assoc($record)){
-    $table[] = $set;
-  }
-}
-else if(isset($_POST['industryType'])){
-  //formでpostされた情報を受け取る
-  $result_indust = $_POST['industryType'];
-  //value値を['industryType']と同じ業種へ変換
-  //$ja = array(20 => '建設業', 21 => '情報通信業', 22 => '教育・学習支援業', 23 => '製造業', 24 => '金融業・保険業', 25 => '公務', 2000 => 'その他');
-  foreach ($result_indust as $value) {
-    $sql = sprintf('SELECT * FROM ');
-		$record = mysqli_query($db, $sql) or die(mysqli_error());
-    $table = array();
-    while($rec = mysqli_fetch_assoc($record)){
-      $table[] = $rec;
-    }
-    if($value == 3){
-      $record = mysqli_query($db, "SELECT * FROM company_datas ORDER BY id DESC");
-    }else{
-      $record = mysqli_query($db, "SELECT * FROM company_datas WHERE indust_type='$ja[$value]'");
-    }
-  }
 }
 ?>
 <!DOCTYPE html>
@@ -145,38 +119,17 @@ else if(isset($_POST['industryType'])){
         </tr>
         <?php
         if (empty($_POST['employment']) && empty($_POST['intern']) && empty($_POST['local']) && empty($_POST['industryType'])){
-          while($table = mysqli_fetch_assoc($recordSet))
-          foreach($r_table as $table){
-            echo $table['id'];
+          $recordSet = mysqli_query($db, 'SELECT * FROM company_datas, location_datas, industries WHERE recruit_id = 11 AND company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id ORDER BY id DESC LIMIT ' . $start . ',5');
+          while($table = mysqli_fetch_assoc($recordSet)){
         ?>
             <tr>
-              <td class="company_name"><a href="#"><?php print(htmlspecialchars($table['company_name'])); ?></a></td>
+              <td class="company_name"><?php print(htmlspecialchars($table['company_name'])); ?></td>
               <td class="indust_type"><?php print(htmlspecialchars($table['indust_name'])); ?></td>
               <td class="address"><?php print(htmlspecialchars($table['location_name'])); ?></td>
             </tr>
 <?php     }
-          for ($x=1; $x <= $maxPage ; $x++) { ?>
-            <a href="recruitment.php?page=<?php echo $x ?>"><?php echo $x; ?></a>
-<?php     }
-        }else if(isset($_POST['industryType']) && $value == 3){
-          while ($table = mysqli_fetch_assoc($record)) { ?>
-            <div id="result">
-              <tr>
-                <td class="company_name"><a href="#"><?php print(htmlspecialchars($table['company_name'])); ?></a></td>
-                <td class="indust_type"><?php print(htmlspecialchars($table['indust_name'])); ?></td>
-                <td class="address"><?php print(htmlspecialchars($table['address'])); ?></td>
-              </tr>
-            </div>
-<?php     }
-        }else if(isset($_POST['industryType']) && $value != 3){
-          while ($table = mysqli_fetch_assoc($record)) { ?>
-            <div id="result">
-              <tr>
-                <td class="company_name"><a href="#"><?php print(htmlspecialchars($table['company_name'])); ?></a></td>
-                <td class="indust_type"><?php print(htmlspecialchars($table['indust_type'])); ?></td>
-                <td class="address"><?php print(htmlspecialchars($table['address'])); ?></td>
-              </tr>
-            </div>
+          for ($x=1; $x <= $maxPage; $x++) { ?>
+            <a href="recruitment.php?page=<?php echo $x ?>"><?php echo $x ?></a>
 <?php     }
         } ?>
       </table>
