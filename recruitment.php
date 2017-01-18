@@ -3,18 +3,12 @@
 require('dbconnect.php');
 //エラーを非表示にする
 //ini_set('display_errors', 0);
-//$record = mysqli_query($db, "SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id ORDER BY id DESC");
 if (empty($_POST['employment']) && empty($_POST['intern']) && empty($_POST['local']) && empty($_POST['industryType'])) {
-  // $page = $_REQUEST['page'];
-  // if ($page = '') {
-  //   $page = 1;
-  // }
-  $page = empty($_GET["page"])? 1:$_GET["page"];
-  $page = max($page, 1);
-  $recordset = mysqli_query($db, "SELECT COUNT(*) AS cnt FROM company_datas WHERE recruit_id = 11");
-  $table = mysqli_fetch_assoc($recordset);
-  $maxPage = ceil($table['cnt'] / 5);
-  $start = ($page - 1) * 5;
+  $recordSet = mysqli_query($db, 'SELECT * FROM company_datas, location_datas, industries WHERE recruit_id = 11 AND company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id ORDER BY id DESC');
+}else if(isset($_POST['employment'])){
+  $recordSet = mysqli_query($db, 'SELECT * FROM company_datas, location_datas, industries WHERE recruit_id = 11 AND company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id ORDER BY id DESC');
+}else if(isset($_POST['intern'])){
+  $recordSet = mysqli_query($db, 'SELECT * FROM company_datas, location_datas, industries WHERE recruit_id = 12 AND company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id ORDER BY id DESC');
 }
 ?>
 <!DOCTYPE html>
@@ -117,21 +111,13 @@ if (empty($_POST['employment']) && empty($_POST['intern']) && empty($_POST['loca
           <th class="indust_type">業種</th>
           <th class="address">所在地</th>
         </tr>
-        <?php
-        if (empty($_POST['employment']) && empty($_POST['intern']) && empty($_POST['local']) && empty($_POST['industryType'])){
-          $recordSet = mysqli_query($db, 'SELECT * FROM company_datas, location_datas, industries WHERE recruit_id = 11 AND company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id ORDER BY id DESC LIMIT ' . $start . ',5');
-          while($table = mysqli_fetch_assoc($recordSet)){
-        ?>
-            <tr>
-              <td class="company_name"><?php print(htmlspecialchars($table['company_name'])); ?></td>
-              <td class="indust_type"><?php print(htmlspecialchars($table['indust_name'])); ?></td>
-              <td class="address"><?php print(htmlspecialchars($table['location_name'])); ?></td>
-            </tr>
-<?php     }
-          for ($x=1; $x <= $maxPage; $x++) { ?>
-            <a href="recruitment.php?page=<?php echo $x ?>"><?php echo $x ?></a>
-<?php     }
-        } ?>
+<?php   while($table = mysqli_fetch_assoc($recordSet)){ ?>
+        <tr>
+          <td class="company_name"><?php print(htmlspecialchars($table['company_name'])); ?></td>
+          <td class="indust_type"><?php print(htmlspecialchars($table['indust_name'])); ?></td>
+          <td class="address"><?php print(htmlspecialchars($table['location_name'])); ?></td>
+        </tr>
+<?php   } ?>
       </table>
     </section>
     <?php include('footer.php'); ?>
