@@ -1,10 +1,12 @@
 <?php
 //connect to databese
 require('dbconnect.php');
-if (empty($_POST['employment']) && empty($_POST['local']) && empty($_POST['industryType'])) {
+
+
+if (empty($_POST['employment']) && empty($_POST['intern']) && empty($_POST['local']) && empty($_POST['industryType'])) {
   $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 10 ORDER BY id DESC');
   $recordSet = mysqli_query($db, $sql) or die(mysqli_error($db));
-}elseif (isset($_POST['employment']) && empty($_POST['intern']) && empty($_POST['local']) && empty($_POST['industryType'])){
+}elseif (isset($_POST['employment']) && empty($_POST['local']) && empty($_POST['industryType'])){
   $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 10 ORDER BY id DESC');
   $recordSet = mysqli_query($db, $sql) or die(mysqli_error($db));
 }elseif (isset($_POST['employment']) && isset($_POST['local']) && empty($_POST['industryType'])){
@@ -22,7 +24,7 @@ if (empty($_POST['employment']) && empty($_POST['local']) && empty($_POST['indus
   $result_indust = $_POST['industryType'];
   foreach ($result_indust as $key => $indust) {
     if ($indust == 3){
-      $sql = sprintf('SELECT * FROM `company_datas`, `location_datas`, `industries` WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 10 ORDER BY id DESC');
+      $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 10 ORDER BY id DESC');
       $recordSet = mysqli_query($db,$sql) or die(mysqli_error($db));
     }else{
       $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 10 AND industries.indust_id = "%d" ORDER BY id DESC', $indust);
@@ -30,8 +32,8 @@ if (empty($_POST['employment']) && empty($_POST['local']) && empty($_POST['indus
     }
   }
 }elseif(isset($_POST['employment']) && isset($_POST['local']) && isset($_POST['industryType'])){
-  $result_location = $_POST['local'];
   $result_indust = $_POST['industryType'];
+  $result_location = $_POST['local'];
   foreach ($result_indust as $key => $indust) {
     foreach ($result_location as $key => $local) {
       if ($local == 2 && $indust == 3){
@@ -52,20 +54,10 @@ if (empty($_POST['employment']) && empty($_POST['local']) && empty($_POST['indus
 }elseif (isset($_POST['intern']) && empty($_POST['local']) && empty($_POST['industryType'])){
   $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 11 ORDER BY id DESC');
   $recordSet = mysqli_query($db, $sql) or die(mysqli_error($db));
-}elseif (isset($_POST['intern']) && isset($_POST['local']) && empty($_POST['industryType'])) {
-  $result_location = $_POST['local'];
-  foreach ($result_location as $key => $local) {
-    if ($local == 2){
-      $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 11 ORDER BY id DESC');
-      $recordSet = mysqli_query($db, $sql) or die(mysqli_error($db));
-    }elseif ($local != 2){
-      $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 11 AND location_datas.location_id = "%d" ORDER BY id DESC', $local);
-      $recordSet = mysqli_query($db, $sql) or die(mysqli_error($db));
-    }
-  }
 }elseif (isset($_POST['intern']) && isset($_POST['local']) && empty($_POST['industryType'])){
   $result_location = $_POST['local'];
   foreach ($result_location as $key => $local) {
+    echo $local;
     if ($local == 2){
       $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 11 ORDER BY id DESC');
       $recordSet = mysqli_query($db, $sql) or die(mysqli_error($db));
@@ -77,8 +69,9 @@ if (empty($_POST['employment']) && empty($_POST['local']) && empty($_POST['indus
 }elseif(isset($_POST['intern']) && empty($_POST['local']) && isset($_POST['industryType'])){
   $result_indust = $_POST['industryType'];
   foreach ($result_indust as $key => $indust) {
+    echo $indust;
     if ($indust == 3){
-      $sql = sprintf('SELECT * FROM `company_datas`, `location_datas`, `industries` WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 11 ORDER BY id DESC');
+      $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 11 ORDER BY id DESC');
       $recordSet = mysqli_query($db,$sql) or die(mysqli_error($db));
     }else{
       $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 11 AND industries.indust_id = "%d" ORDER BY id DESC', $indust);
@@ -86,10 +79,12 @@ if (empty($_POST['employment']) && empty($_POST['local']) && empty($_POST['indus
     }
   }
 }elseif (isset($_POST['intern']) && isset($_POST['local']) && isset($_POST['industryType'])) {
-  $result_location = $_POST['local'];
   $result_indust = $_POST['industryType'];
+  $result_location = $_POST['local'];
   foreach ($result_indust as $key => $indust) {
     foreach ($result_location as $key => $local) {
+      echo $indust;
+      echo $local;
       if ($local == 2 && $indust == 3){
         $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 11 ORDER BY id DESC');
         $recordSet = mysqli_query($db, $sql) or die(mysqli_error($db));

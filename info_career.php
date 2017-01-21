@@ -1,6 +1,6 @@
 <?php
 require('dbconnect.php');
-require('functions.php');
+require('function.php');
 
 $department_name = array();
 $selected_depart_name = array();
