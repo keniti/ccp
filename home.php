@@ -1,6 +1,5 @@
 <?php
 require('dbconnect.php');
-require('calendar.php');
 
 $record = mysqli_query($db, 'SELECT * FROM news ORDER BY id DESC LIMIT 5');
 $recordSet=mysqli_query($db, 'SELECT * FROM calendar_datas');
@@ -71,9 +70,14 @@ $recordSet=mysqli_query($db, 'SELECT * FROM calendar_datas');
           <p class="contentsTitle">スケジュール</p>
           <p class="b_contentsTitle">Schedule</p>
         </div>
-        <h3><?php echo $year; ?>年<?php echo $month; ?>月</h3>
+      <?php
+        $y = date('Y');
+        $m = date('n');
+        require('calendar.php');
+        ?>
+        <h3><span id="year"><?php echo $y ?>年</span><span id="month"><?php echo $m; ?>月</span></h3>
         <table>
-          <tr class="day">
+          <tr>
             <th>日</th>
             <th>月</th>
             <th>火</th>
@@ -83,28 +87,41 @@ $recordSet=mysqli_query($db, 'SELECT * FROM calendar_datas');
             <th>土</th>
           </tr>
           <tr class="days">
+            <?php $cnt = 0; ?>
             <?php
-            $cnt = 0;
-            foreach ($calendar as $key => $value):
+              calendar($y,$m);
+              foreach ($_SESSION['calendar'] as $key => $value):
             ?>
+
             <td>
-              <?php $cnt++;
-              echo $value['day'];
-              echo "</br>";
+              <?php $cnt++; ?>
+              <?php echo $value['day']; ?>
+              <br>
+              <?php
+              $recordSet=mysqli_query($db, 'SELECT * FROM calendar_datas ORDER BY id DESC');
               while($table = mysqli_fetch_assoc($recordSet)){
-                if (htmlspecialchars($table['day']) == $value['day'] && htmlspecialchars($table['month']) == $month && htmlspecialchars($table['year']) == $year) {
-                  echo htmlspecialchars($table['event']);
+                if (htmlspecialchars($table['year']) == $y) {
+                  if(htmlspecialchars($table['month']) == $m){
+                    if(htmlspecialchars($table['day']) == $value['day']){
+              ?>
+                <a href="karendar_syousai.php?event=<?php echo htmlspecialchars($table['event']); ?>
+                    &detail=<?php echo htmlspecialchars($table['detail']);?>" onClick="document.kdetail.submit(); return false;">
+                  <?php echo htmlspecialchars($table['event']);?>
+                </a>
+              <?php
+                    }
+                  }
                 }
               }
               ?>
             </td>
             <?php if ($cnt == 7): ?>
           </tr>
-          <?php
-          $cnt = 0;
-          endif;
-          endforeach;
-          ?>
+          <tr>
+            <?php $cnt = 0; ?>
+            <?php endif; ?>
+            <?php endforeach; ?>
+          </tr>
         </table>
       </div>
       <div id="sirumoku">

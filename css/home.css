@@ -167,8 +167,12 @@ p.contentsTitle{
 #calendar table tr{
   height: 80px;
 }
+#calendar table tr:first-child{
+  height: auto;
+}
 #calendar table tr:last-child{
   border-bottom: solid 1px #ccc;
+  height: 0;
 }
 #calendar table tr.day{
   height: 25px;
@@ -179,6 +183,14 @@ tr.days td{
 .event{
   border-bottom: solid 1px #ccc;
 }
+.doyoubi{
+  color:blue;
+}
+.nitiyoubi{
+  color:red;
+}
+/* 1列目 */ #calendar table tbody tr :nth-child(1) {color:red;}
+/* 7列目 */ #calendar table tbody tr :nth-child(7) {color:blue;}
 #sirumoku .image img{
   display:block;
   width: 80%;
