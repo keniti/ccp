@@ -100,7 +100,7 @@ if (isset($_POST['department_id']) && $_POST['department_id'] != 0) {
     <!-- コンテンツ -->
     <script type="text/javascript">
       function move_to_intern_page(job_alpha){
-        var str = "intern2.php?business_type=" + job_alpha;
+        var str = "intern.php?business_type=" + job_alpha;
         document.location = str;
       }
     </script>
