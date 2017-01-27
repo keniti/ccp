@@ -80,6 +80,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>就職先データ</title>
+		<link rel="shortcut icon" href="img/logo/tpu_logo.png">
 		<link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/common.css">
@@ -99,100 +100,92 @@
       <div class="clear"></div>
     </header>
 		<!-- コンテンツ部分 -->
-		<div class="past-info">
+		<div class="contents">
+			<div class="past-info">
 
-		</div>
-		<h2>過去5年分の就職者情報</h2>
-		<p>
-			下記には、
-			<?php
-				$m = date('m');
-				if($m < 4){
-					echo date('Y')-1;
-				}
-				else if($m >= 4 && $m <= 12){
-					echo date('Y');
-				}
-			?>
-			年度より過去5年間のそれぞれの企業への就職者人数を表示しています。
-		</p>
-		<div　id = "table-01">
-			<!-- 参考サイト：http://bashalog.c-brains.jp/08/06/13-165130.php -->
-			<table id="table-02">
-				<tr>
-					<th>社名</th>
+			</div>
+			<div class="introduce">
+				<h2>過去5年分の就職者情報</h2>
+				<p>
+					下記には、
 					<?php
-						if(empty($_GET['business_type']) && !isset($_GET['business_type'])){
-							echo "<th>職種</th>";
+						$m = date('m');
+						if($m < 4){
+							echo date('Y')-1;
+						}
+						else if($m >= 4 && $m <= 12){
+							echo date('Y');
 						}
 					?>
-					<th>
+					年度より過去5年間のそれぞれの企業への就職者人数を表示しています。
+				</p>
+			</div>
+			<div　id = "table-01">
+				<!-- 参考サイト：http://bashalog.c-brains.jp/08/06/13-165130.php -->
+				<table id="table-02">
+					<tr>
+						<th>社名</th>
 						<?php
-							if(!empty($_GET['depertment']) && isset($_GET['depertment'])){
-	 							echo $_GET['depertment'];
-	 							echo "からの過去５年間の";
-	 						}
+							if(empty($_GET['business_type']) && !isset($_GET['business_type'])){
+								echo "<th>職種</th>";
+							}
 						?>
-						就職者人数
-					</th>
-				</tr>
-				<?php foreach($data as $data): ?>
-					<?php
-						if(!empty($depertment_type) && isset($depertment_type)){
-							$employer_num = count_depertment_employer($data['5_ago'], $depertment_type) +
-								count_depertment_employer($data['4_ago'], $depertment_type) +
-								count_depertment_employer($data['3_ago'], $depertment_type) +
-								count_depertment_employer($data['2_ago'], $depertment_type) +
-								count_depertment_employer($data['last_year'], $depertment_type);
-							if($employer_num >= 1){
+						<th>
+							<?php
+								if(!empty($_GET['depertment']) && isset($_GET['depertment'])){
+		 							echo $_GET['depertment'];
+		 							echo "からの過去５年間の";
+		 						}
+							?>
+							就職者人数
+						</th>
+					</tr>
+					<?php foreach($data as $data): ?>
+						<?php
+							if(!empty($depertment_type) && isset($depertment_type)){
+								$employer_num = count_depertment_employer($data['5_ago'], $depertment_type) +
+									count_depertment_employer($data['4_ago'], $depertment_type) +
+									count_depertment_employer($data['3_ago'], $depertment_type) +
+									count_depertment_employer($data['2_ago'], $depertment_type) +
+									count_depertment_employer($data['last_year'], $depertment_type);
+								if($employer_num >= 1){
+									echo "<tr>";
+										echo "<td>";
+											echo $data['company_name'];
+										echo "</td>";
+										echo "<td>";
+											echo $data['job_kind'];
+										echo "</td>";
+										echo "<td>";
+											echo $employer_num;
+										echo "</td>";
+									echo "</tr>";
+								}
+							}
+							else{
 								echo "<tr>";
 									echo "<td>";
 										echo $data['company_name'];
 									echo "</td>";
+									if(empty($_GET['business_type']) && !isset($_GET['business_type'])){
+										echo "<td>";
+											echo $data['job_kind'];
+										echo "</td>";
+									}
 									echo "<td>";
-										echo $data['job_kind'];
-									echo "</td>";
-									echo "<td>";
-										echo $employer_num;
+										$num = count_employer($data['5_ago']) +
+											count_employer($data['4_ago']) +
+											count_employer($data['3_ago']) +
+											count_employer($data['2_ago']) +
+											count_employer($data['last_year']);
+										echo $num;
 									echo "</td>";
 								echo "</tr>";
 							}
-						}
-						else{
-							echo "<tr>";
-								echo "<td>";
-									echo $data['company_name'];
-								echo "</td>";
-								if(empty($_GET['business_type']) && !isset($_GET['business_type'])){
-									echo "<td>";
-										echo $data['job_kind'];
-									echo "</td>";
-								}
-								echo "<td>";
-									$num = count_employer($data['5_ago']) +
-										count_employer($data['4_ago']) +
-										count_employer($data['3_ago']) +
-										count_employer($data['2_ago']) +
-										count_employer($data['last_year']);
-									echo $num;
-								echo "</td>";
-							echo "</tr>";
-						}
-					?>
-
-				<?php endforeach; ?>
-			</table>
+						endforeach; ?>
+				</table>
+			</div>
 		</div>
-		<!-- 以下テスト用 -->
-<!--
-		<form action='intern.php' method='post'>
-			<input type='hidden' name='business_type' value='B'>
-			<input type='submit' value='B'>
-		</form>
-		<form action='intern.php' method='post'>
-			<input type='hidden' name="business_type" value='C'>
-			<input type="submit" value='C'>
-		</form> -->
 		<?php include('footer.php'); ?>
 	</body>
 </html>
