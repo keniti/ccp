@@ -30,9 +30,6 @@
 		while($rec = mysqli_fetch_assoc($record)){
 			$data[] = $rec;
 		}
-		// echo "<pre>";
-		// var_dump($data);
-		// echo "</pre>";
 	}
 	//データベースに登録された就職者の人数についてのカラム（String型）から人数を計算するメソッド
 	function count_employer($str){
@@ -52,17 +49,11 @@
 	//学科が送られてきたらこれが呼ばれます
 	function count_depertment_employer($str, $dep){
 		$depertment_data = explode(":", $str);
-		// echo "<pre>";
-		// var_dump($depertment_data);
-		// echo "</pre>";
 		$each_employer_num = array();
 		$num_of_employer = 0;
 		for($i=0;$i<count($depertment_data);$i++){
 			$each_employer_num[$i] = explode("_" , $depertment_data[$i]);
 		}
-		// echo "<pre>";
-		// var_dump($each_employer_num);
-		// echo "</pre>";
 		for($j=0;$j<count($each_employer_num);$j++){
 			if($each_employer_num[$j][0] == $dep){
 				//echo "キタキター";
