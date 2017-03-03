@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	require('dbconnect.php');
+	date_default_timezone_set('Asia/Tokyo');
 	//職種で呼ばれた場合は、A,B,...がくる
 	//学科で呼ばれた場合は、機械だとか知能だとかがくる
 	if(!empty($_GET) && isset($_GET)){

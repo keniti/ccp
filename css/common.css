@@ -83,68 +83,89 @@ footer{
 	clear: both;
 	width: 100%;
 	border-top: 4px solid #2390de;
-	background: #e5edf3;
+	background: #2390de;
 	margin-top: 10px;
-	overflow: auto;
+	color: #fff;
 }
-.linkList{
-	width: 70%;
-	margin: 0 auto;
-	overflow: auto;
-}
-.linkList h3{
-	margin: 0;
-	padding: 10px 0;
-	font-size: 20px;
-	font-weight: bolder;
-}
-.foot_topic{
-	font-size: 18px;
-	font-weight: bold;
-	margin-top: 20px;
-}
-.foot_link{
-	float: left;
-	margin-bottom: 20px;
-	width: 100%;
-}
-.foot_topics{
-	margin-top: 0;
-	font-size: 15px;
-	font-weight: bolder;
-}
-.linkList ul.internal{
-  list-style-type: none;
-	margin: 0;
-	overflow: auto;
-}
-.linkList ul.internal li{
-  float: left;
-	margin-right: 1%;
-}
-.linkList ul.internal li.internal-link{
-	margin: 0;
-	width: 100%;
-}
-.linkList ul.foot_list{
-	padding-left: 20px;
-  list-style-image: url('../img/icon/ic_arrow.svg');
-}
-.linkList ul.foot_list li{
-  clear: both;
-	margin: 0;
-	font-size: 13px;
-}
-.linkList ul .foot_list li a{
-	text-decoration: none;
+.contacts{
+	background: #e5edf3;
 	color: #333;
 }
-.foot_list li ul{
-	padding-left: 10px;
-  list-style-image: url('../img/icon/ic_arrow.svg');
+.contact-inner{
+	width: 40%;
+	margin: 0 auto;
+	padding-bottom: 1rem;
 }
-.foot_topic_link{
-	margin-bottom: none;
+.contact-title{
+	width: 80%;
+	margin: 0 auto;
+}
+.contact-title h1{
+	font-size: 20px;
+	padding: 1rem 0;
+	padding-top: 2rem;
+	margin: 0;
+}
+.contact-inner ul{
+	margin: 0;
+}
+.contact-inner li{
+	margin-bottom: 1rem;
+}
+.linkList{
+	width: 80%;
+	margin: 0px auto;
+	margin-top: 10px;
+}
+.linkList h1{
+	font-size: 24px;
+	margin: 0;
+	padding-bottom: 10px;
+}
+.internal h2{
+	font-size: 16px;
+	margin: 0;
+	padding: 0;
+	padding-bottom: 1rem;
+}
+.foot_link h3{
+	width: auto;
+	font-size: 14px;
+	margin: 0;
+	padding: 0;
+	padding-bottom: 0.5rem;
+}
+.linkList ul{
+	width: 100%;
+	list-style: none;
+	overflow: auto;
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+ul.internal{
+	padding-top: 1rem;
+	padding-bottom: 2rem;
+}
+.internal li{
+	float: left;
+	font-size: 13px;
+}
+.internal li a{
+	color: #fff;
+	text-decoration: none;
+}
+li.internal-link{
+	padding: 0;
+	overflow: auto;
+}
+ul.foot_list{
+	padding-left: 2rem;
+	padding-right: 1rem;
+	list-style-image: url('../img/material/ic_arrow.svg');
+}
+.foot_list li{
+	clear: both;
 }
 footer .copyright{
 	clear: both;

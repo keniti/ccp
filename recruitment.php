@@ -4,33 +4,21 @@ require('dbconnect.php');
 
 $dates = array();
 
-if (empty($_POST['employment']) && empty($_POST['intern']) && empty($_POST['local']) && empty($_POST['industryType'])) {
+if(empty($_POST['employment']) && empty($_POST['intern'])){
+  $error['employment'] = 'blank';
+  $sql = sprintf('SELECT * FROM `company_datas` WHERE 0');
+}else{
+  $error['employment'] = '';
+}
+if (isset($_POST['employment']) && empty($_POST['local']) && empty($_POST['industryType'])){
   $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 10 ORDER BY id DESC');
-  $recordSet = mysqli_query($db, $sql) or die(mysqli_error($db));
-  while($table = mysqli_fetch_assoc($recordSet)){
-    $dates[] = $table;
-  }
-}elseif (isset($_POST['employment']) && empty($_POST['local']) && empty($_POST['industryType'])){
-  $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 10 ORDER BY id DESC');
-  $recordSet = mysqli_query($db, $sql) or die(mysqli_error($db));
-  while($table = mysqli_fetch_assoc($recordSet)){
-    $dates[] = $table;
-  }
 }elseif (isset($_POST['employment']) && isset($_POST['local']) && empty($_POST['industryType'])){
   $result_location = $_POST['local'];
   foreach ($result_location as $key => $local) {
     if ($local == 2){
       $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 10 ORDER BY id DESC');
-      $recordSet = mysqli_query($db, $sql) or die(mysqli_error($db));
-      while($table = mysqli_fetch_assoc($recordSet)){
-        $dates[] = $table;
-      }
     }else{
       $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 10 AND location_datas.location_id = "%d"', $local);
-      $recordSet = mysqli_query($db, $sql) or die(mysqli_error($db));
-      while($table = mysqli_fetch_assoc($recordSet)){
-        $dates[] = $table;
-      }
     }
   }
 }elseif(isset($_POST['employment']) && empty($_POST['local']) && isset($_POST['industryType'])){
@@ -38,87 +26,59 @@ if (empty($_POST['employment']) && empty($_POST['intern']) && empty($_POST['loca
   foreach ($result_indust as $key => $indust) {
     if ($indust == 3){
       $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 10 ORDER BY id DESC');
-      $recordSet = mysqli_query($db,$sql) or die(mysqli_error($db));
-      while($table = mysqli_fetch_assoc($recordSet)){
-        $dates[] = $table;
-      }
     }else{
-      $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 10 AND industries.indust_id = "%d" ORDER BY id DESC', $indust);
-      $recordSet = mysqli_query($db,$sql) or die(mysqli_error($db));
-      while($table = mysqli_fetch_assoc($recordSet)){
-        $dates[] = $table;
+      if($_POST['industryType'][0] == 3000){
+        $sql = sprintf("SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 10 AND industries.indust_id >= 300 ORDER BY id DESC");
+      }else{
+        $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 10 AND industries.indust_id = "%d" ORDER BY id DESC', $indust);
       }
     }
   }
 }elseif(isset($_POST['employment']) && isset($_POST['local']) && isset($_POST['industryType'])){
-  echo "adnai";;
   $result_indust = $_POST['industryType'];
   $result_location = $_POST['local'];
   foreach ($result_indust as $key => $indust) {
     foreach ($result_location as $key => $local) {
       if ($local == 2 && $indust == 3){
         $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 10 ORDER BY id DESC');
-        $recordSet = mysqli_query($db, $sql) or die(mysqli_error($db));
-        while($table = mysqli_fetch_assoc($recordSet)){
-          $dates[] = $table;
-        }
       }elseif ($local == 2 && $indust != 3){
-        $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 10 AND industries.indust_id = "%d" ORDER BY id DESC', $indust);
-        $recordSet = mysqli_query($db, $sql) or die(mysqli_error($db));
-        while($table = mysqli_fetch_assoc($recordSet)){
-          $dates[] = $table;
+        if($_POST['industryType'][0] == 3000){
+          $sql = sprintf("SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 10 AND industries.indust_id >= 300 ORDER BY id DESC");
+        }else{
+          $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 10 AND industries.indust_id = "%d" ORDER BY id DESC', $indust);
         }
       }elseif ($local != 2 && $indust == 3) {
         $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 10 AND location_datas.location_id = "%d" ORDER BY id DESC', $local);
-        $recordSet = mysqli_query($db, $sql) or die(mysqli_error($db));
-        while($table = mysqli_fetch_assoc($recordSet)){
-          $dates[] = $table;
-        }
       }elseif ($local != 2 && $indust != 3) {
-        $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 10 AND location_datas.location_id = "%d" AND industries.indust_id = "%d" ORDER BY id DESC', $local, $indust);
-        $recordSet = mysqli_query($db, $sql) or die(mysqli_error($db));
-        while($table = mysqli_fetch_assoc($recordSet)){
-          $dates[] = $table;
+        if($_POST['industryType'][0] == 3000){
+          $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 10 AND location_datas.location_id = "%d" AND industries.indust_id >= 300 ORDER BY id DESC', $local);
+        }else{
+          $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 10 AND location_datas.location_id = "%d" AND industries.indust_id = "%d" ORDER BY id DESC', $local, $indust);
         }
       }
     }
   }
 }elseif (isset($_POST['intern']) && empty($_POST['local']) && empty($_POST['industryType'])){
   $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 11 ORDER BY id DESC');
-  $recordSet = mysqli_query($db, $sql) or die(mysqli_error($db));
 }elseif (isset($_POST['intern']) && isset($_POST['local']) && empty($_POST['industryType'])){
   $result_location = $_POST['local'];
   foreach ($result_location as $key => $local) {
-    echo $local;
     if ($local == 2){
       $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 11 ORDER BY id DESC');
-      $recordSet = mysqli_query($db, $sql) or die(mysqli_error($db));
-      while($table = mysqli_fetch_assoc($recordSet)){
-        $dates[] = $table;
-      }
     }else{
       $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 11 AND location_datas.location_id = "%d"', $local);
-      $recordSet = mysqli_query($db, $sql) or die(mysqli_error($db));
-      while($table = mysqli_fetch_assoc($recordSet)){
-        $dates[] = $table;
-      }
     }
   }
 }elseif(isset($_POST['intern']) && empty($_POST['local']) && isset($_POST['industryType'])){
   $result_indust = $_POST['industryType'];
   foreach ($result_indust as $key => $indust) {
-    echo $indust;
     if ($indust == 3){
       $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 11 ORDER BY id DESC');
-      $recordSet = mysqli_query($db,$sql) or die(mysqli_error($db));
-      while($table = mysqli_fetch_assoc($recordSet)){
-        $dates[] = $table;
-      }
     }else{
-      $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 11 AND industries.indust_id = "%d" ORDER BY id DESC', $indust);
-      $recordSet = mysqli_query($db,$sql) or die(mysqli_error($db));
-      while($table = mysqli_fetch_assoc($recordSet)){
-        $dates[] = $table;
+      if($_POST['industryType'][0] == 3000){
+        $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 11 AND industries.indust_id >= 300 ORDER BY id DESC');
+      }else{
+        $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 11 AND industries.indust_id = "%d" ORDER BY id DESC', $indust);
       }
     }
   }
@@ -127,104 +87,30 @@ if (empty($_POST['employment']) && empty($_POST['intern']) && empty($_POST['loca
   $result_location = $_POST['local'];
   foreach ($result_indust as $key => $indust) {
     foreach ($result_location as $key => $local) {
-      echo $indust;
-      echo $local;
       if ($local == 2 && $indust == 3){
         $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 11 ORDER BY id DESC');
-        $recordSet = mysqli_query($db, $sql) or die(mysqli_error($db));
-        while($table = mysqli_fetch_assoc($recordSet)){
-          $dates[] = $table;
-        }
       }elseif ($local == 2 && $indust != 3){
-        $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 11 AND industries.indust_id = "%d" ORDER BY id DESC', $indust);
-        $recordSet = mysqli_query($db, $sql) or die(mysqli_error($db));
-        while($table = mysqli_fetch_assoc($recordSet)){
-          $dates[] = $table;
+        if($_POST['industryType'][0] == 3000){
+          $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 11 AND industries.indust_id >= 300 ORDER BY id DESC');
+        }else{
+          $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 11 AND industries.indust_id = "%d" ORDER BY id DESC', $indust);
         }
       }elseif ($local != 2 && $indust == 3) {
         $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 11 AND location_datas.location_id = "%d" ORDER BY id DESC', $local);
-        $recordSet = mysqli_query($db, $sql) or die(mysqli_error($db));
-        while($table = mysqli_fetch_assoc($recordSet)){
-          $dates[] = $table;
-        }
       }elseif ($local != 2 && $indust != 3) {
-        $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 11 AND location_datas.location_id = "%d" AND industries.indust_id = "%d" ORDER BY id DESC', $local, $indust);
-        $recordSet = mysqli_query($db, $sql) or die(mysqli_error($db));
-        while($table = mysqli_fetch_assoc($recordSet)){
-          $dates[] = $table;
+        if($_POST['industryType'][0] == 3000){
+          $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 11 AND location_datas.location_id = "%d" AND industries.indust_id >= 300 ORDER BY id DESC', $local);
+        }else{
+          $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND `recruit_id` = 11 AND location_datas.location_id = "%d" AND industries.indust_id = "%d" ORDER BY id DESC', $local, $indust);
         }
       }
     }
   }
-}elseif (empty($_POST['employment']) && empty($_POST['intern']) && isset($_POST['local']) || isset($_POST['industryType'])){
-  if (isset($_POST['local']) && isset($_POST['industryType'])) {
-    $result_indust = $_POST['industryType'];
-    $result_location = $_POST['local'];
-    foreach ($result_indust as $key => $indust) {
-      foreach ($result_location as $key => $local) {
-        if ($local == 2 && $indust == 3){
-          $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id ORDER BY id DESC');
-          $recordSet = mysqli_query($db, $sql) or die(mysqli_error($db));
-          while($table = mysqli_fetch_assoc($recordSet)){
-            $dates[] = $table;
-          }
-        }elseif ($local == 2 && $indust != 3){
-          $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND industries.indust_id = "%d" ORDER BY id DESC', $indust);
-          $recordSet = mysqli_query($db, $sql) or die(mysqli_error($db));
-          while($table = mysqli_fetch_assoc($recordSet)){
-            $dates[] = $table;
-          }
-        }elseif ($local != 2 && $indust == 3) {
-          $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND location_datas.location_id = "%d" ORDER BY id DESC', $local);
-          $recordSet = mysqli_query($db, $sql) or die(mysqli_error($db));
-          while($table = mysqli_fetch_assoc($recordSet)){
-            $dates[] = $table;
-          }
-        }elseif ($local != 2 && $indust != 3) {
-          echo "advi";
-          $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND location_datas.location_id = "%d" AND industries.indust_id = "%d" ORDER BY id DESC', $local, $indust);
-          $recordSet = mysqli_query($db, $sql) or die(mysqli_error($db));
-          while($table = mysqli_fetch_assoc($recordSet)){
-            $dates[] = $table;
-          }
-        }
-      }
-    }
-  }elseif (isset($_POST['local']) && empty($_POST['industryType'])) {
-    $result_location = $_POST['local'];
-    foreach ($result_location as $key => $local) {
-      if ($local == 2){
-        $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id ORDER BY id DESC');
-        $recordSet = mysqli_query($db, $sql) or die(mysqli_error($db));
-        while($table = mysqli_fetch_assoc($recordSet)){
-          $dates[] = $table;
-        }
-      }else{
-        $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND location_datas.location_id = "%d"', $local);
-        $recordSet = mysqli_query($db, $sql) or die(mysqli_error($db));
-        while($table = mysqli_fetch_assoc($recordSet)){
-          $dates[] = $table;
-        }
-      }
-    }
-  }elseif (isset($_POST['industryType']) && empty($_POST['local'])) {
-    $result_indust = $_POST['industryType'];
-    foreach ($result_indust as $key => $indust) {
-      if ($indust == 3){
-        $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id ORDER BY id DESC');
-        $recordSet = mysqli_query($db,$sql) or die(mysqli_error($db));
-        while($table = mysqli_fetch_assoc($recordSet)){
-          $dates[] = $table;
-        }
-      }else{
-        $sql = sprintf('SELECT * FROM company_datas, location_datas, industries WHERE company_datas.location_id = location_datas.location_id AND company_datas.indust_id = industries.indust_id AND industries.indust_id = "%d" ORDER BY id DESC', $indust);
-        $recordSet = mysqli_query($db,$sql) or die(mysqli_error($db));
-        while($table = mysqli_fetch_assoc($recordSet)){
-          $dates[] = $table;
-        }
-      }
-    }
-  }
+}
+$recordSet = mysqli_query($db, $sql) or die(mysqli_error($db));
+while($table = mysqli_fetch_assoc($recordSet)){
+  $dates[] = $table;
+  rsort($dates);
 }
 ?>
 <!DOCTYPE html>
@@ -271,8 +157,12 @@ if (empty($_POST['employment']) && empty($_POST['intern']) && empty($_POST['loca
     <div class="searchform">
       <form class="searchform_re" action="recruitment.php#result" method="post">
         <ul class="selector">
-          <li><input type="checkbox" name="employment" class="select" value="10">就職求人情報</li>
+          <li><input type="checkbox" name="employment" class="select" value="10" checked>就職求人情報</li>
           <li><input type="checkbox" name="intern" class="select" value="11">インターンシップ求人情報</li>
+          <?php if($error['employment'] == 'blank'): ?>
+            <li><p class="error">* どちらか選択してください</p></li>
+          <?php else:
+            endif; ?>
         </ul>
         <ul class="local_1">
           <li><input type="checkbox" name="local[]" value="2">すべて選択</li>
@@ -291,32 +181,18 @@ if (empty($_POST['employment']) && empty($_POST['intern']) && empty($_POST['loca
           <li><input type="checkbox" name="industryType[]" value="3">すべて選択</li>
         </ul>
         <ul class="indust_2">
-          <li><input type="checkbox" name="industryType[]" value="30">農業・林業</li>
-          <li><input type="checkbox" name="industryType[]" value="31">漁業</li>
-          <li><input type="checkbox" name="industryType[]" value="32">鉱業，採石業，砂利採取行</li>
-          <li><input type="checkbox" name="industryType[]" value="33">建設業</li>
-          <li><input type="checkbox" name="industryType[]" value="34">製造業</li>
-          <li><input type="checkbox" name="industryType[]" value="35">電気・ガス・熱供給・水道業</li>
-          <li><input type="checkbox" name="industryType[]" value="36">情報通信業</li>
-          <li><input type="checkbox" name="industryType[]" value="37">運輸業，郵便業</li>
-          <li><input type="checkbox" name="industryType[]" value="38">卸売業，小売業</li>
-          <li><input type="checkbox" name="industryType[]" value="39">金融業，保険業</li>
+          <li><input type="checkbox" name="industryType[]" value="31">建設業</li>
+          <li><input type="checkbox" name="industryType[]" value="32">製造業</li>
+          <li><input type="checkbox" name="industryType[]" value="33">電気・ガス・熱供給・水道業</li>
         </ul>
         <ul class="indust_3">
-          <li><input type="checkbox" name="industryType[]" value="300">不動産業，物品賃貸業</li>
-          <li><input type="checkbox" name="industryType[]" value="301">学術研究，専門・技術サービス</li>
-          <li><input type="checkbox" name="industryType[]" value="302">宿泊業，飲食サービス業</li>
-          <li><input type="checkbox" name="industryType[]" value="303">生活関連サービス業，娯楽業</li>
-          <li><input type="checkbox" name="industryType[]" value="304">教育，学習支援業</li>
-          <li><input type="checkbox" name="industryType[]" value="305">医療，福祉</li>
-          <li><input type="checkbox" name="industryType[]" value="306">複合サービス事業</li>
-          <li><input type="checkbox" name="industryType[]" value="307">サービス業(他に分類されないもの)</li>
-          <li><input type="checkbox" name="industryType[]" value="308">公務(他に分類されるものを除く)</li>
-          <li><input type="checkbox" name="industryType[]" value="3000">分類不能の産業</li>
+          <li><input type="checkbox" name="industryType[]" value="34">情報通信業</li>
+          <li><input type="checkbox" name="industryType[]" value="35">学術研究，専門・技術サービス</li>
+          <li><input type="checkbox" name="industryType[]" value="3000">その他</li>
         </ul>
         <div class="clear"></div>
-        <input class="submit" type="submit" name="検索">
-        <input class="reset" type="reset" name="リセット">
+        <input class="submit btn btn-primary" type="submit" name="検索">
+        <input class="reset btn btn-warning" type="reset" name="リセット">
       </form>
     </div>
     <div class="clear"></div>

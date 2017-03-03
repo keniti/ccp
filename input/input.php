@@ -13,9 +13,7 @@
     <select name="year">
       <?php echo("s"); ?>
       <option value="未選択">選択してください</option>
-      <?php
-        $y=2016;
-        for ($y=2016; $y<=2100; $y++){?>
+      <?php for ($y=2016; $y<=2020; $y++){ ?>
         <option value="<?php echo $y;?>"><?php echo $y;?></option>
       <?php }?>
     </select>

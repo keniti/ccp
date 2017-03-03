@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2017 年 1 月 20 日 06:16
+-- Generation Time: 2017 年 2 月 27 日 11:52
 -- サーバのバージョン： 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -78,7 +78,9 @@ INSERT INTO `calendar_datas` (`id`, `event`, `year`, `month`, `day`, `detail`) V
 (15, 'helllllll', 2016, 11, 5, 'fajfoa'),
 (16, 'aaa', 2016, 2, 1, 'kkkk'),
 (17, '', 0, 0, 0, ''),
-(18, 'hoge', 2016, 11, 4, 'hofe\r\n');
+(18, 'hoge', 2016, 11, 4, 'hofe\r\n'),
+(19, '', 0, 0, 0, ''),
+(20, 'olahioasokankl', 2016, 2, 27, 'adgoanbla');
 
 -- --------------------------------------------------------
 
@@ -99,19 +101,19 @@ CREATE TABLE `company_datas` (
 --
 
 INSERT INTO `company_datas` (`id`, `company_name`, `indust_id`, `location_id`, `recruit_id`) VALUES
-(1, '安達建設株式会社', 34, 21, 10),
-(2, '射水ケーブルネットワーク株式会社', 37, 23, 11),
-(3, '魚津市役所', 308, 23, 10),
-(4, 'オーアイ工業株式会社', 35, 24, 11),
-(5, '株式会社大谷工業　富山工場', 35, 23, 10),
-(6, '株式会社北日本新聞', 37, 24, 10),
-(7, 'NPO法人親と教員の会　こどものその', 304, 22, 10),
-(8, '砺波信用金庫', 39, 23, 11),
-(9, 'あそあそ自然学校', 304, 26, 10),
-(10, '株式会社あんしんグループ', 39, 23, 11),
-(11, '野村證券株式会社　富山市店', 39, 23, 11),
-(12, '株式会社ハイテック', 35, 23, 10),
-(13, '国土交通省北陸地方整備局　利賀ダム工事事務所', 34, 23, 11);
+(1, '安達建設株式会社', 31, 21, 10),
+(2, '射水ケーブルネットワーク株式会社', 34, 23, 11),
+(3, '魚津市役所', 314, 23, 10),
+(4, 'オーアイ工業株式会社', 32, 24, 11),
+(5, '株式会社大谷工業　富山工場', 32, 23, 10),
+(6, '株式会社北日本新聞', 34, 24, 10),
+(7, 'NPO法人親と教員の会　こどものその', 310, 22, 10),
+(8, '砺波信用金庫', 306, 23, 11),
+(9, 'あそあそ自然学校', 310, 26, 10),
+(10, '株式会社あんしんグループ', 306, 23, 11),
+(11, '野村證券株式会社　富山市店', 306, 23, 11),
+(12, '株式会社ハイテック', 32, 23, 10),
+(13, '国土交通省北陸地方整備局　利賀ダム工事事務所', 31, 23, 11);
 
 -- --------------------------------------------------------
 
@@ -979,7 +981,7 @@ INSERT INTO `employee` (`id`, `company_name`, `job_kind`, `5_ago`, `4_ago`, `3_a
 
 CREATE TABLE `industries` (
   `indust_id` int(11) NOT NULL,
-  `indust_name` varchar(255) CHARACTER SET utf8 NOT NULL
+  `indust_name` text CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -987,26 +989,26 @@ CREATE TABLE `industries` (
 --
 
 INSERT INTO `industries` (`indust_id`, `indust_name`) VALUES
-(30, '農業・林業\r\n'),
-(31, '漁業'),
-(32, '鉱業，採石業，砂利採取行'),
-(33, '建設業'),
-(34, '製造業'),
-(35, '電気・ガス・熱供給・水道業'),
-(36, '情報通信業'),
-(37, '運輸業，郵便業'),
-(38, '卸売業，小売業'),
-(39, '金融業，保険業'),
-(300, '不動産業，物品賃貸業'),
-(301, '学術研究，専門・技術サービス'),
-(302, '宿泊業，飲食サービス業'),
-(303, '生活関連サービス業，娯楽業'),
-(304, '教育，学習支援業'),
-(305, '医療，福祉'),
-(306, '複合サービス事業'),
-(307, 'サービス業(他に分類されないもの)'),
-(308, '公務(他に分類されるものを除く)'),
-(3000, '分類不能の産業');
+(31, '建設業'),
+(32, '製造業'),
+(33, '電気・ガス・熱供給・水道業'),
+(34, '情報通信業'),
+(35, '学術研究．専門・技術サービス'),
+(301, '農業・林業'),
+(302, '漁業'),
+(303, '鉱業．採石集，砂利採取行'),
+(304, '運輸業，郵便業'),
+(305, '卸売業，小売業'),
+(306, '金融業，保険業'),
+(307, '不動産業，物品賃貸業'),
+(308, '宿泊業，飲料サービス業'),
+(309, '生活関連サービス業，娯楽業'),
+(310, '教育，学習支援業'),
+(311, '医療，福祉'),
+(312, '複合サービス事業'),
+(313, 'サービス業'),
+(314, '公務'),
+(315, '分類不能の産業');
 
 -- --------------------------------------------------------
 
@@ -1100,7 +1102,81 @@ CREATE TABLE `news` (
 --
 
 INSERT INTO `news` (`id`, `year`, `month`, `day`, `title`, `text`, `target`, `category`) VALUES
-(1, 2017, 1, 1, '元旦', '明けましておめでとうございます', '全学年', 'お知らせ');
+(1, 2017, 1, 1, '元旦', '明けましておめでとうございます', '全学年', 'お知らせ'),
+(2, 2017, 3, 2, '合同説明会の開催について\r\n', 'hogehoge', '3年生', 'お知らせ');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `sirumoku_data`
+--
+
+CREATE TABLE `sirumoku_data` (
+  `id` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `start-time` time NOT NULL,
+  `finish-time` time NOT NULL,
+  `place` text CHARACTER SET utf8 NOT NULL,
+  `n_people` int(11) NOT NULL,
+  `n_company` text CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- テーブルのデータのダンプ `sirumoku_data`
+--
+
+INSERT INTO `sirumoku_data` (`id`, `date`, `start-time`, `finish-time`, `place`, `n_people`, `n_company`) VALUES
+(1, '2016-06-23', '14:50:00', '16:20:00', 'L202', 20, 'アイテック,ドコモ'),
+(2, '2016-07-07', '14:50:00', '16:20:00', 'L203', 20, 'hoge,hoge'),
+(3, '2016-10-13', '14:50:00', '16:20:00', 'L202', 20, 'hoge,hogehoge'),
+(4, '2016-10-20', '14:50:00', '16:20:00', 'L203', 20, 'hogehoge,hoge'),
+(5, '2016-11-15', '14:50:00', '16:20:00', 'L202', 20, 'hogehoge,hogehoge'),
+(6, '2016-12-08', '14:50:00', '16:20:00', 'L201', 40, 'foo,bar'),
+(7, '2016-12-15', '14:50:00', '16:20:00', 'L201', 40, 'foofoo,barbar'),
+(8, '2016-12-22', '14:50:00', '16:20:00', 'L202', 20, 'fuga,hoge'),
+(9, '2017-06-23', '14:50:00', '16:20:00', 'L202', 20, 'アイテック,ドコモ');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `sirumoku_entry`
+--
+
+CREATE TABLE `sirumoku_entry` (
+  `id` int(11) NOT NULL,
+  `event_date` date NOT NULL,
+  `application_date` date NOT NULL,
+  `come_from` int(11) NOT NULL,
+  `student_number` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- テーブルのデータのダンプ `sirumoku_entry`
+--
+
+INSERT INTO `sirumoku_entry` (`id`, `event_date`, `application_date`, `come_from`, `student_number`) VALUES
+(1, '2016-06-23', '2016-06-03', 1, 1415005);
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `sirumoku_student_data`
+--
+
+CREATE TABLE `sirumoku_student_data` (
+  `id` int(11) NOT NULL,
+  `student_number` int(11) NOT NULL,
+  `sex` int(11) NOT NULL,
+  `mail` text CHARACTER SET utf8 NOT NULL,
+  `come_from` text CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- テーブルのデータのダンプ `sirumoku_student_data`
+--
+
+INSERT INTO `sirumoku_student_data` (`id`, `student_number`, `sex`, `mail`, `come_from`) VALUES
+(1, 1415005, 0, 't415005@st.pu-toyama.ac.jp', '富山');
 
 --
 -- Indexes for dumped tables
@@ -1161,6 +1237,24 @@ ALTER TABLE `news`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `sirumoku_data`
+--
+ALTER TABLE `sirumoku_data`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sirumoku_entry`
+--
+ALTER TABLE `sirumoku_entry`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sirumoku_student_data`
+--
+ALTER TABLE `sirumoku_student_data`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -1173,12 +1267,12 @@ ALTER TABLE `area_numbers`
 -- AUTO_INCREMENT for table `calendar_datas`
 --
 ALTER TABLE `calendar_datas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `company_datas`
 --
 ALTER TABLE `company_datas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `departments`
 --
@@ -1193,7 +1287,7 @@ ALTER TABLE `employee`
 -- AUTO_INCREMENT for table `industries`
 --
 ALTER TABLE `industries`
-  MODIFY `indust_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `indust_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `job_lists`
 --
@@ -1203,11 +1297,26 @@ ALTER TABLE `job_lists`
 -- AUTO_INCREMENT for table `location_datas`
 --
 ALTER TABLE `location_datas`
-  MODIFY `location_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `location_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `sirumoku_data`
+--
+ALTER TABLE `sirumoku_data`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT for table `sirumoku_entry`
+--
+ALTER TABLE `sirumoku_entry`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `sirumoku_student_data`
+--
+ALTER TABLE `sirumoku_student_data`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

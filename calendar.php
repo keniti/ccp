@@ -36,6 +36,51 @@ function calendar($y,$m){
 						 }
 				 }
 		 }
+		 //echo "<pre>";
+		 //var_dump($calendar);//データを全部表示する
+		 //echo "</pre>";
+
 		 $_SESSION['calendar'] = $calendar;
  }
- ?>
+function ssp_holiday(){
+	$y = date('Y');
+	require_once 'Date/Holidays.php';
+	// インストール先のパスを指定
+	$filename = '/usr/share/pear/data/Date_Holidays_Japan/lang/Japan/ja_JP.xml';
+	$dh = array();
+	for($i=0;$i<3;$i++){
+ 		$dh[$i] = &Date_Holidays::factory('Japan', $y-1+$i, 'ja_JP');
+ 		$dh[$i]->addTranslationFile($filename, 'ja_JP');
+	}
+	$holidays = array();
+	for($j=0;$j<3;$j++){
+		foreach ($dh[$j]->getHolidays() as $h) {
+			$holidays[$h->getDate()->format('%Y-%m-%d')] = $h->getDate()->format('%Y_%m_%d');
+		}
+	}
+	return $holidays;
+}
+
+function devide_holiday_data($hd){
+	$hoge = array();
+	foreach($hd as $hd){
+			$hoge[]	 = explode('_', $hd);
+	}
+		// echo "<pre>";
+		// var_dump($hoge);
+		// echo "</pre>";
+	return $hoge;
+}
+
+function current_date($y, $m, $hd){
+	$hoe = array();
+	foreach($hd as $hd){
+		if($y == $hd[0]){
+			if($m == $hd[1]){
+				$hoe[] = $hd;
+			}
+		}
+	}
+	return $hoe;
+}
+?>

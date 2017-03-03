@@ -8,6 +8,14 @@
   list-style-type: none;
   margin: 0;
 }
+.submit,
+.reset{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.submit{
+  margin-right: 20px;
+}
 .selector li{
   margin-top: 20px;
   margin-right: 15px;
@@ -49,4 +57,9 @@ th{
 }
 .address{
   width: 21%;
+}
+p.error{
+  color: #f33e3e;
+  margin: 0;
+  padding: 0;
 }

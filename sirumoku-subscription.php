@@ -1,3 +1,17 @@
+<?php
+  require('dbconnect.php');
+  $sql_date=sprintf('SELECT * FROM `sirumoku_data` WHERE 1');
+  $record_date=mysqli_query($db,$sql_date);
+  $sql_department=sprintf('SELECT * FROM `departments` WHERE 1');
+  $record_department=mysqli_query($db,$sql_department);
+  $sql_prefecture=sprintf('SELECT * FROM `prefectures` WHERE 1');
+  $record_prefcture=mysqli_query($db,$sql_prefecture);
+  // while($table=mysqli_fetch_assoc($recordSet)){
+  //   print(htmlspecialchars($table['date']));
+  // }
+  $date = date('Y-m-d');
+  $deadline=date('Y-m-d', strtotime("+3 day"));
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -7,6 +21,7 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/common.css">
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
   </head>
   <body>
     <header>
@@ -22,7 +37,23 @@
       <div class="clear"></div>
     </header>
     <div class="contents">
-      <h1>Coming Soon...</h1>
+      <form id="form" action="sirumoku-subscription-check.php" method="post">
+        <select class="" name="date">
+          <option value="none">選択してください</option>
+          <?php
+          while($table_date=mysqli_fetch_assoc($record_date)){
+            if($table_date['date'] > $deadline){
+          ?>
+              <option name="date" value="<?php print(htmlspecialchars($table_date['date'])); ?>"><?php print(htmlspecialchars($table_date['date'])); ?></option>
+          <?php
+            }
+          }
+          ?>
+        </select>
+        <input type="text" name="name" placeholder="氏名">
+        <input type="text" name="student_number" placeholder="学籍番号">
+        <input type="submit" name="" value="参加申込する">
+      </form>
     </div>
     <?php include('footer.php'); ?>
   </body>

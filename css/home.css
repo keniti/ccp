@@ -1,12 +1,33 @@
 /*home.php*/
-.topImage{
-  width: 100%;
+.top{
+  width: 80%;
+  overflow: auto;
+  margin: 5% auto;
+}
+.top-image{
+  float: left;
+  width: 40%;
+  margin: 2rem;
+}
+.top-image-inner{
+  width: 90%;
   margin: 0 auto;
 }
-.topImage img{
+.top-image img{
   width: 100%;
 }
+.top-introduction-title h1{
+  margin-top: 80px;
+  margin-bottom: 15px;
+  font-size: 2rem;
+}
+.top-introduction-title h4{
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
 .tabs{
+  clear: both;
   width: 496px;
   height: 32px;
   margin: 50px auto;
@@ -153,6 +174,7 @@ p.contentsTitle{
 }
 #calendar table{
   width: 100%;
+  margin-top: 10px;
 }
 #calendar table th{
   background-color: #ccc;
@@ -177,6 +199,23 @@ p.contentsTitle{
 #calendar table tr.day{
   height: 25px;
 }
+.slider .slide {
+ width: 588px;
+ height: 500px;
+ /*border: 1px solid #f00;*/
+ float: left;
+}
+.slider .slideSet {
+ position: absolute;
+ left: -7056px;
+}
+.slider {
+ width: 588px;
+ height: 500px;
+ margin: 0 auto;
+ overflow: hidden;
+ position: relative;
+}
 tr.days td{
   border: none;
 }
@@ -191,20 +230,29 @@ tr.days td{
 }
 /* 1列目 */ #calendar table tbody tr :nth-child(1) {color:red;}
 /* 7列目 */ #calendar table tbody tr :nth-child(7) {color:blue;}
-#sirumoku .image img{
-  display:block;
-  width: 80%;
-  margin: 0 auto;
+.image{
+  display: block;
+}
+.image img{
+  width: 100%;
+  height: auto;
 }
 .image a{
-  display: block;
+  display: inline-block;
   text-align: center;
   text-decoration: none;
   color: #333;
 }
+.sirumoku-image{
+  width: 70%;
+  margin: 0 auto;
+}
 .tab_link{
   position: relative;
   bottom: 100px;
+}
+.tab_link .center{
+  text-align: center;
 }
 .tab_link_inside{
   color: #fff;
@@ -217,21 +265,21 @@ tr.days td{
 	-ms-box-sizing:border-box;
 	-o-box-sizing:border-box;
 }
-.intro{
-  width: 40%;
-  margin: 0 auto;
-}
 .intro p{
-  font-size: 16px;
+  font-size: 15px;
   text-align: center;
 }
 .intro .intro_margin{
   margin-top: 10px;
 }
 .sirumoku_datas table{
-  width: 60%;
+  width: 80%;
   margin: 0 auto;
-  margin-top: 40px;
+  margin-top: 20px;
+}
+.sirumoku_datas h1{
+  text-align: center;
+  font-size: 2rem;
 }
 .s_data_list{
   background-color: #2394ff;
